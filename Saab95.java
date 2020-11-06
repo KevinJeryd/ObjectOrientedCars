@@ -9,7 +9,6 @@ public class Saab95{
     public Color color; // Color of the car
     public String modelName; // The car model name
 
-    //test gabb
     
     public Saab95(){
         nrDoors = 2;
