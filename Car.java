@@ -46,6 +46,13 @@ public abstract class Car implements Vehicle{
         currentSpeed = 0;
     }
 
+    public abstract double speedFactor();
+
+    public abstract void incrementSpeed(double amount);
+
+    public abstract void decrementSpeed(double amount);
+
+
     // TODO fix this method according to lab pm
     public void gas(double amount){
         incrementSpeed(amount);
