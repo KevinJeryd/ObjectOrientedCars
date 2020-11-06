@@ -1,11 +1,23 @@
 import java.awt.*;
 
-public abstract class Car implements Vehicle{
+public abstract class Car implements Vehicle, Movable {
+    enum Direction {
+        NORTH,
+        EAST,
+        SOUTH,
+        WEST
+    }
+
     private int nrDoors; // Number of doors on the car
     private double enginePower; // Engine power of the car
     private double currentSpeed; // The current speed of the car
     private Color color; // Color of the car
     private String modelName; // The car model name
+
+    private Direction facing;
+
+    private double x;
+    private double y;
 
     public Car(int nrDoors, Color color, double enginePower, String modelName) {
         this.nrDoors = nrDoors;
@@ -38,6 +50,30 @@ public abstract class Car implements Vehicle{
         color = clr;
     }
 
+    public Direction getFacing() {
+        return facing;
+    }
+
+    public void setFacing(Direction facing) {
+        this.facing = facing;
+    }
+
+    public double getX() {
+        return x;
+    }
+
+    public void setX(double x) {
+        this.x = x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
+    public void setY(double y) {
+        this.y = y;
+    }
+
     public void startEngine(){
         currentSpeed = 0.1;
     }
@@ -52,8 +88,19 @@ public abstract class Car implements Vehicle{
 
     public abstract void decrementSpeed(double amount);
 
+    public void move(){
 
-    // TODO fix this method according to lab pm
+    }
+
+    public void turnLeft() {
+
+    }
+
+    public void turnRight() {
+
+    }
+
+    // TODO fix this method according to lab pm (make if statements that only allows 0 < x < 1)
     public void gas(double amount){
         incrementSpeed(amount);
     }
