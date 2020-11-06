@@ -89,15 +89,48 @@ public abstract class Car implements Vehicle, Movable {
     public abstract void decrementSpeed(double amount);
 
     public void move(){
-
+        if (facing == Direction.NORTH) {
+            setY(getY()+getCurrentSpeed());
+        }
+        if (facing == Direction.EAST) {
+            setX(getX()+getCurrentSpeed());
+        }
+        if (facing == Direction.SOUTH) {
+            setY(getY()-getCurrentSpeed());
+        }
+        if (facing == Direction.WEST) {
+            setX(getX()-getCurrentSpeed());
+        }
     }
 
     public void turnLeft() {
-
+        if (facing == Direction.NORTH) {
+            setFacing(Direction.WEST);
+        }
+        if (facing == Direction.EAST) {
+            setFacing(Direction.NORTH);
+        }
+        if (facing == Direction.SOUTH) {
+            setFacing(Direction.EAST);
+        }
+        if (facing == Direction.WEST) {
+            setFacing(Direction.SOUTH);
+        }
     }
 
     public void turnRight() {
-
+        if (facing == Direction.NORTH) {
+            setFacing(Direction.EAST);
+        }
+        if (facing == Direction.EAST) {
+            setFacing(Direction.SOUTH);
+        }
+        if (facing == Direction.SOUTH) {
+            setFacing(Direction.WEST);
+        }
+        if (facing == Direction.WEST) {
+            setFacing(Direction.NORTH);
+        }
     }
 
     // TODO fix this method according to lab pm (make if statements that only allows 0 < x < 1)
