@@ -1,5 +1,12 @@
 import java.awt.*;
 
+/**
+ * Represents a vehicle
+ * Is to be implemented by a class representing an object that is a vehicle
+ * @author Gabriel Wadensten
+ * @author Kevin Jeryd
+ * @author Jonatan Sandgren
+ */
 public interface Vehicle {
     int getNrDoors();
     double getEnginePower();
