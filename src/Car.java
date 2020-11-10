@@ -1,6 +1,16 @@
 import java.awt.*;
 
+/**
+ * Represents a car implementing the interfaces Vehicle and Movable.
+ * This is an abstract class used to be extended by classes representing different car models.
+ * @author Gabriel Wadensten
+ * @author Kevin Jeryd
+ * @author Jonatan Sandgren
+ */
 public abstract class Car implements Vehicle, Movable {
+    /**
+     * Enumeration representing the different direction the car can face.
+     */
     enum Direction {
         NORTH,
         EAST,
@@ -8,6 +18,14 @@ public abstract class Car implements Vehicle, Movable {
         WEST
     }
 
+    /**
+     * int nrDoors; - Number of doors on the car
+     * double enginePower; - Engine power of the car
+     * double currentSpeed; - The current speed of the car
+     * Color color; Color of the car
+     * String modelName; The car model name
+     * Direction facing; Facing direction of the car
+     */
     private int nrDoors; // Number of doors on the car
     private double enginePower; // Engine power of the car
     private double currentSpeed; // The current speed of the car
@@ -21,10 +39,10 @@ public abstract class Car implements Vehicle, Movable {
 
     /**
      * Constructs a car object.
-     * @param nrDoors
-     * @param color
-     * @param enginePower
-     * @param modelName
+     * @param nrDoors Number of doors on the car
+     * @param color Color of the car
+     * @param enginePower Engine power of the car
+     * @param modelName The car model name
      */
     public Car(int nrDoors, Color color, double enginePower, String modelName) {
         this.nrDoors = nrDoors;
@@ -82,20 +100,42 @@ public abstract class Car implements Vehicle, Movable {
         this.y = y;
     }
 
+    /**
+     * Sets the current speed to 0.1
+     */
     public void startEngine(){
-        currentSpeed = 0.1;
+        setCurrentSpeed(0.1);
     }
 
+    /**
+     * Sets the current speed to 0
+     */
     public void stopEngine(){
-        currentSpeed = 0;
+        setCurrentSpeed(0);
     }
 
+    /**
+     * Calculates the speed factor
+     * @return double containing the speed factor
+     */
     public abstract double speedFactor();
 
+    /**
+     * Increments the speed
+     * @param amount a double containing a value in which the car speed increments
+     */
     public abstract void incrementSpeed(double amount);
 
+    /**
+     * Decrements the speed
+     * @param amount a double containing a value in which the car speed decrements
+     */
     public abstract void decrementSpeed(double amount);
 
+    /**
+     * Moves the car in the direction the car is facing.
+     * Changes the x or y coordinates of the car with the amount of current speed.
+     */
     public void move(){
         if (getFacing() == Direction.NORTH) {
             setY(getY()+getCurrentSpeed());
@@ -111,6 +151,10 @@ public abstract class Car implements Vehicle, Movable {
         }
     }
 
+    /**
+     * Turns the car left.
+     * Changes the value of facing to the direction left of the current direction
+     */
     public void turnLeft() {
         if (getFacing() == Direction.NORTH) {
             setFacing(Direction.WEST);
@@ -126,6 +170,10 @@ public abstract class Car implements Vehicle, Movable {
         }
     }
 
+    /**
+     * Turns the car right.
+     * Changes the value of facing to the direction left of the current direction
+     */
     public void turnRight() {
         if (getFacing() == Direction.NORTH) {
             setFacing(Direction.EAST);
@@ -142,10 +190,19 @@ public abstract class Car implements Vehicle, Movable {
     }
 
     // TODO fix this method according to lab pm (make if statements that only allows 0 < x < 1)
+
+    /**
+     * Increments the speed.
+     * @param amount a double containing the value that the speed should increment with
+     */
     public void gas(double amount){
         incrementSpeed(amount);
     }
 
+    /**
+     * Decrements the speed.
+     * @param amount a double containing the value that the speed should decrement with
+     */
     // TODO fix this method according to lab pm
     public void brake(double amount){
         decrementSpeed(amount);
