@@ -19,6 +19,13 @@ public abstract class Car implements Vehicle, Movable {
     private double x;
     private double y;
 
+    /**
+     * Constructs a car object.
+     * @param nrDoors
+     * @param color
+     * @param enginePower
+     * @param modelName
+     */
     public Car(int nrDoors, Color color, double enginePower, String modelName) {
         this.nrDoors = nrDoors;
         this.color = color;
@@ -30,6 +37,7 @@ public abstract class Car implements Vehicle, Movable {
     public int getNrDoors(){
         return nrDoors;
     }
+
     public double getEnginePower(){
         return enginePower;
     }
@@ -89,46 +97,46 @@ public abstract class Car implements Vehicle, Movable {
     public abstract void decrementSpeed(double amount);
 
     public void move(){
-        if (facing == Direction.NORTH) {
+        if (getFacing() == Direction.NORTH) {
             setY(getY()+getCurrentSpeed());
         }
-        if (facing == Direction.EAST) {
+        if (getFacing()== Direction.EAST) {
             setX(getX()+getCurrentSpeed());
         }
-        if (facing == Direction.SOUTH) {
+        if (getFacing() == Direction.SOUTH) {
             setY(getY()-getCurrentSpeed());
         }
-        if (facing == Direction.WEST) {
+        if (getFacing() == Direction.WEST) {
             setX(getX()-getCurrentSpeed());
         }
     }
 
     public void turnLeft() {
-        if (facing == Direction.NORTH) {
+        if (getFacing() == Direction.NORTH) {
             setFacing(Direction.WEST);
         }
-        if (facing == Direction.EAST) {
+        if (getFacing() == Direction.EAST) {
             setFacing(Direction.NORTH);
         }
-        if (facing == Direction.SOUTH) {
+        if (getFacing() == Direction.SOUTH) {
             setFacing(Direction.EAST);
         }
-        if (facing == Direction.WEST) {
+        if (getFacing() == Direction.WEST) {
             setFacing(Direction.SOUTH);
         }
     }
 
     public void turnRight() {
-        if (facing == Direction.NORTH) {
+        if (getFacing() == Direction.NORTH) {
             setFacing(Direction.EAST);
         }
-        if (facing == Direction.EAST) {
+        if (getFacing() == Direction.EAST) {
             setFacing(Direction.SOUTH);
         }
-        if (facing == Direction.SOUTH) {
+        if (getFacing() == Direction.SOUTH) {
             setFacing(Direction.WEST);
         }
-        if (facing == Direction.WEST) {
+        if (getFacing() == Direction.WEST) {
             setFacing(Direction.NORTH);
         }
     }
