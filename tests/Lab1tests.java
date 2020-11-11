@@ -10,6 +10,9 @@ import static org.junit.Assert.assertThrows;
  * Speed should be lower after decrementSpeed
  * Car should have new values for y after move method while facing NORTH
  * Car should face SOUTH after turning left from WEST
+ * Car should face NORTH after turning right from WEST
+ * Should throw exception if gas amount is greater than one
+ * Should throw exception if brake amount is smaller than zero
  */
 
 public class Lab1tests {
