@@ -124,16 +124,19 @@ public abstract class Car implements Vehicle, Movable {
      * Increments the speed
      * @param amount a double containing a value in which the car speed increments
      */
-    public abstract void incrementSpeed(double amount);
+    public void incrementSpeed(double amount){
+        setCurrentSpeed(Math.min(getCurrentSpeed() + speedFactor() * amount, getEnginePower()));
+    }
 
     /**
      * Decrements the speed
      * @param amount a double containing a value in which the car speed decrements
      */
-    public abstract void decrementSpeed(double amount);
+    public void decrementSpeed(double amount){
+        setCurrentSpeed(Math.max(getCurrentSpeed() - speedFactor() * amount,0));
+    }
 
-    /**
-     * Moves the car in the direction the car is facing.
+    /** Moves the car in the direction the car is facing.
      * Changes the x or y coordinates of the car with the amount of current speed.
      */
     public void move(){
@@ -189,22 +192,29 @@ public abstract class Car implements Vehicle, Movable {
         }
     }
 
-    // TODO fix this method according to lab pm (make if statements that only allows 0 < x < 1)
-
     /**
      * Increments the speed.
      * @param amount a double containing the value that the speed should increment with
+     * @throws IllegalArgumentException if amount given falls outside range [0,1]
      */
     public void gas(double amount){
-        incrementSpeed(amount);
+        if (amount >= 0 && amount <= 1) {
+            incrementSpeed(amount);
+        } else {
+            throw new IllegalArgumentException("Only accepts amount between 0 and 1");
+        }
     }
 
     /**
      * Decrements the speed.
      * @param amount a double containing the value that the speed should decrement with
+     * @throws IllegalArgumentException if amount given falls outside range [0,1]
      */
-    // TODO fix this method according to lab pm
     public void brake(double amount){
-        decrementSpeed(amount);
+        if (amount >= 0 && amount <= 1) {
+            decrementSpeed(amount);
+        } else {
+            throw new IllegalArgumentException("Only accepts amount between 0 and 1");
+        }
     }
 }
