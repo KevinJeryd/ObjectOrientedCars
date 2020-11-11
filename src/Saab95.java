@@ -1,9 +1,21 @@
 import java.awt.*;
 
+/**
+ * Represents a Saab95 extending the class Car.
+ * @author Gabriel Wadensten
+ * @author Kevin Jeryd
+ * @author Jonatan Sandgren
+ */
 public class Saab95 extends Car{
 
+    /**
+     * boolean turboOn; - Is the turbo on?
+     */
     private boolean turboOn;
-    
+
+    /**
+     * Constructs a Saab95 object.
+     */
     public Saab95(){
         super(2, Color.red, 125, "Saab95");
 	    turboOn = false;
