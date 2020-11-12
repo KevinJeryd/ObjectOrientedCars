@@ -19,12 +19,7 @@ public abstract class Car implements Vehicle, Movable {
     }
 
     /**
-     * int nrDoors; - Number of doors on the car
-     * double enginePower; - Engine power of the car
-     * double currentSpeed; - The current speed of the car
-     * Color color; Color of the car
-     * String modelName; The car model name
-     * Direction facing; Facing direction of the car
+     *
      */
     private final int nrDoors; // Number of doors on the car
     private final double enginePower; // Engine power of the car
@@ -142,18 +137,14 @@ public abstract class Car implements Vehicle, Movable {
     public void move(){
         if (getFacing() == Direction.NORTH) {
             setY(getY()+getCurrentSpeed());
-        }
-        if (getFacing()== Direction.EAST) {
+        } else if (getFacing()== Direction.EAST) {
             setX(getX()+getCurrentSpeed());
-        }
-        if (getFacing() == Direction.SOUTH) {
+        } else if (getFacing() == Direction.SOUTH) {
             setY(getY()-getCurrentSpeed());
-        }
-        if (getFacing() == Direction.WEST) {
+        } else if (getFacing() == Direction.WEST) {
             setX(getX()-getCurrentSpeed());
         }
     }
-
     /**
      * Turns the car left.
      * Changes the value of facing to the direction left of the current direction
@@ -161,18 +152,14 @@ public abstract class Car implements Vehicle, Movable {
     public void turnLeft() {
         if (getFacing() == Direction.NORTH) {
             setFacing(Direction.WEST);
-        }
-        if (getFacing() == Direction.EAST) {
+        } else if (getFacing() == Direction.EAST) {
             setFacing(Direction.NORTH);
-        }
-        if (getFacing() == Direction.SOUTH) {
+        } else if (getFacing() == Direction.SOUTH) {
             setFacing(Direction.EAST);
-        }
-        if (getFacing() == Direction.WEST) {
+        } else if (getFacing() == Direction.WEST) {
             setFacing(Direction.SOUTH);
         }
     }
-
     /**
      * Turns the car right.
      * Changes the value of facing to the direction left of the current direction
@@ -180,18 +167,14 @@ public abstract class Car implements Vehicle, Movable {
     public void turnRight() {
         if (getFacing() == Direction.NORTH) {
             setFacing(Direction.EAST);
-        }
-        if (getFacing() == Direction.EAST) {
+        } else if (getFacing() == Direction.EAST) {
             setFacing(Direction.SOUTH);
-        }
-        if (getFacing() == Direction.SOUTH) {
+        } else if (getFacing() == Direction.SOUTH) {
             setFacing(Direction.WEST);
-        }
-        if (getFacing() == Direction.WEST) {
+        } else if (getFacing() == Direction.WEST) {
             setFacing(Direction.NORTH);
         }
     }
-
     /**
      * Increments the speed.
      * @param amount a double containing the value that the speed should increment with
@@ -204,7 +187,6 @@ public abstract class Car implements Vehicle, Movable {
             throw new IllegalArgumentException("Only accepts amount between 0 and 1");
         }
     }
-
     /**
      * Decrements the speed.
      * @param amount a double containing the value that the speed should decrement with

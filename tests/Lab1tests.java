@@ -1,7 +1,8 @@
 import org.junit.Test;
-import static  org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertThrows;
+
+import java.awt.*;
+
+import static org.junit.Assert.*;
 
 /**
  * Current speed after stopping engine should be 0
@@ -9,10 +10,20 @@ import static org.junit.Assert.assertThrows;
  * Speed should be higher after incrementSpeed
  * Speed should be lower after decrementSpeed
  * Car should have new values for y after move method while facing NORTH
+ * Car should have new values for x after move method while facing EAST
  * Car should face SOUTH after turning left from WEST
  * Car should face NORTH after turning right from WEST
  * Should throw exception if gas amount is greater than one
+ * Speed should increase if gas with legal amount
  * Should throw exception if brake amount is smaller than zero
+ * Speed should decrease if brake with legal amount
+ * Speed factor for Volvo240 should take into account the trim factor
+ * isTurboOn should be true if setTurboOn is called
+ * isTurboOn should be false if setTurboOff is called.
+ * Color of car should now be gray
+ * Volvo240 should have 4 doors
+ * Turning four times anti clockwise should make the car face the same direction it started with
+ * Turning four times clockwise should make the car face the same direction it started with
  */
 
 public class Lab1tests {
@@ -51,7 +62,7 @@ public class Lab1tests {
     }
 
     @Test
-    public void moveMovesTheCar() {
+    public void moveMovesTheCarNorth() {
         Car car = new Saab95();
         car.startEngine();
         car.setFacing(Car.Direction.NORTH);
@@ -59,6 +70,17 @@ public class Lab1tests {
         car.setY(0);
         car.move();
         assertTrue(car.getY() > 0);
+    }
+
+    @Test
+    public void moveMovesTheCarEast() {
+        Car car = new Saab95();
+        car.startEngine();
+        car.setFacing(Car.Direction.EAST);
+        car.setX(0);
+        car.setY(0);
+        car.move();
+        assertTrue(car.getX() > 0);
     }
 
     @Test
@@ -84,6 +106,13 @@ public class Lab1tests {
             car.gas(32);
         });
     }
+    @Test
+    public void gasWithOkayAmount() {
+        Car car = new Saab95();
+        car.gas(0.4);
+        assertTrue(car.getCurrentSpeed() > 0);
+
+    }
 
     @Test
     public void brakeWithLowerThanZero() {
@@ -92,5 +121,79 @@ public class Lab1tests {
             car.brake(-3);
         });
     }
+
+    @Test
+    public void brakeWithOkayAmount() {
+        Car car = new Saab95();
+        car.startEngine();
+        car.brake(0.8);
+        assertTrue(car.getCurrentSpeed() == 0);
+    }
+
+    @Test
+    public void volvoSpeedFactor() {
+        Car car = new Volvo240();
+        double speedFactor = car.speedFactor();
+        assertEquals(1.25, speedFactor, 0);
+    }
+
+
+    @Test
+    public void TurboOnSetsTurboOn() {
+        Saab95 car = new Saab95();
+        car.setTurboOn();
+        assertTrue (car.isTurboOn());
+    }
+
+    @Test
+    public void TurboOffSetsTurboOff() {
+       Saab95 car = new Saab95();
+       car.setTurboOff();
+       assertFalse(car.isTurboOn());
+    }
+
+    @Test
+    public void changeColor() {
+        Car car = new Volvo240();
+        car.setColor(Color.gray);
+        assertEquals(Color.gray, car.getColor());
+    }
+
+    @Test
+    public void checkNrDoors() {
+        Car car = new Volvo240();
+        assertEquals(4, car.getNrDoors());
+    }
+
+    @Test
+    public void carGoAroundAntiClockwise() {
+        Car car = new Saab95();
+        car.startEngine();
+        car.setFacing(Car.Direction.NORTH);
+        car.setY(0);
+        car.setX(0);
+        for (int i = 0; i < 8; i++) {
+            car.move();
+            car.turnLeft();
+        }
+
+        assertEquals(Car.Direction.NORTH, car.getFacing());
+    }
+
+    @Test
+    public void carGoAroundClockwise() {
+        Car car = new Saab95();
+        car.startEngine();
+        car.setFacing(Car.Direction.NORTH);
+        car.setY(0);
+        car.setX(0);
+        for (int i = 0; i < 8; i++) {
+            car.move();
+            car.turnRight();
+        }
+
+        assertEquals(Car.Direction.NORTH, car.getFacing());
+    }
+
 
 }
