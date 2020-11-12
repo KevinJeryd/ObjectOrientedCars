@@ -22,8 +22,8 @@ import static org.junit.Assert.*;
  * isTurboOn should be false if setTurboOff is called.
  * Color of car should now be gray
  * Volvo240 should have 4 doors
- * Turning four times anti clockwise should make the car face the same direction it started with
- * Turning four times clockwise should make the car face the same direction it started with
+ * Turning and moving eight times anti clockwise should make the car face the same direction it started with
+ * Turning and moving eight times clockwise should make the car face the same direction it started with
  */
 
 public class Lab1tests {
