@@ -10,11 +10,6 @@ import java.awt.*;
 public abstract class Truck extends Vehicle{
 
    /**
-    * The angle of the platform
-    */
-   private double platform;
-
-   /**
     * Constructs a Truck object
     * @param nrDoors
     * @param color
@@ -23,14 +18,5 @@ public abstract class Truck extends Vehicle{
     */
    public Truck(int nrDoors, Color color, double enginePower, String modelName) {
       super(nrDoors, color, enginePower, modelName);
-      setPlatform(0);
-   }
-
-   public void setPlatform(double platform) {
-      this.platform = platform;
-   }
-
-   public double getPlatform(double platform) {
-      return platform;
    }
 }

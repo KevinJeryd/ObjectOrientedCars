@@ -120,7 +120,9 @@ public abstract class Vehicle implements Movable{
      * Calculates the speed factor
      * @return double containing the speed factor
      */
-    public abstract double speedFactor();
+    public double speedFactor() {
+        return getEnginePower() * 0.01;
+    }
 
     /**
      * Increments the speed
