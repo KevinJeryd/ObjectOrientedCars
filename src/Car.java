@@ -1,13 +1,13 @@
 import java.awt.*;
 
 /**
- * Represents a car implementing the interfaces Vehicle and Movable.
+ * Represents a car extending the class Vehicle.
  * This is an abstract class used to be extended by classes representing different car models.
  * @author Gabriel Wadensten
  * @author Kevin Jeryd
  * @author Jonatan Sandgren
  */
-public abstract class Car extends Vehicle implements Movable {
+public abstract class Car extends Vehicle {
     /**
      * Constructs a Car object
      * @param nrDoors
