@@ -66,7 +66,7 @@ public class Lab1tests {
     public void moveMovesTheCarNorth() {
         Car car = new Saab95();
         car.startEngine();
-        car.setFacing(Car.Direction.NORTH);
+        car.setFacing(Direction.NORTH);
         car.setX(0);
         car.setY(0);
         car.move();
@@ -77,7 +77,7 @@ public class Lab1tests {
     public void moveMovesTheCarEast() {
         Car car = new Saab95();
         car.startEngine();
-        car.setFacing(Car.Direction.EAST);
+        car.setFacing(Direction.EAST);
         car.setX(0);
         car.setY(0);
         car.move();
@@ -87,17 +87,17 @@ public class Lab1tests {
     @Test
     public void turnLeftTurnsLeft () {
         Car car = new Volvo240();
-        car.setFacing(Car.Direction.WEST);
+        car.setFacing(Direction.WEST);
         car.turnLeft();
-        assertTrue( car.getFacing() == Car.Direction.SOUTH );
+        assertTrue( car.getFacing() == Direction.SOUTH );
     }
 
     @Test
     public void turnRightTurnsRight () {
         Car car = new Volvo240();
-        car.setFacing(Car.Direction.WEST);
+        car.setFacing(Direction.WEST);
         car.turnRight();
-        assertTrue( car.getFacing() == Car.Direction.NORTH );
+        assertTrue( car.getFacing() == Direction.NORTH );
     }
 
     @Test
@@ -170,7 +170,7 @@ public class Lab1tests {
     public void carGoAroundAntiClockwise() {
         Car car = new Saab95();
         car.startEngine();
-        car.setFacing(Car.Direction.NORTH);
+        car.setFacing(Direction.NORTH);
         car.setY(0);
         car.setX(0);
         for (int i = 0; i < 8; i++) {
@@ -178,14 +178,14 @@ public class Lab1tests {
             car.turnLeft();
         }
 
-        assertEquals(Car.Direction.NORTH, car.getFacing());
+        assertEquals(Direction.NORTH, car.getFacing());
     }
 
     @Test
     public void carGoAroundClockwise() {
         Car car = new Saab95();
         car.startEngine();
-        car.setFacing(Car.Direction.NORTH);
+        car.setFacing(Direction.NORTH);
         car.setY(0);
         car.setX(0);
         for (int i = 0; i < 8; i++) {
@@ -193,7 +193,7 @@ public class Lab1tests {
             car.turnRight();
         }
 
-        assertEquals(Car.Direction.NORTH, car.getFacing());
+        assertEquals(Direction.NORTH, car.getFacing());
     }
 
     @Test
