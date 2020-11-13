@@ -9,6 +9,7 @@ import java.awt.*;
  */
 public interface Vehicle {
     int getNrDoors();
+    String getModelName();
     double getEnginePower();
     double getCurrentSpeed();
     Color getColor();

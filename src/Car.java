@@ -19,17 +19,38 @@ public abstract class Car implements Vehicle, Movable {
     }
 
     /**
-     *
+     * Number of doors on the car
      */
-    private final int nrDoors; // Number of doors on the car
-    private final double enginePower; // Engine power of the car
-    private double currentSpeed; // The current speed of the car
-    private Color color; // Color of the car
-    private final String modelName; // The car model name
+    private final int nrDoors;
+    /**
+     * Engine power of the car
+     */
+    private final double enginePower;
+    /**
+     * The current speed of the car
+     */
+    private double currentSpeed;
+    /**
+     * Color of the car
+     */
+    private Color color;
+    /**
+     * The car model name
+     */
+    private final String modelName;
 
+    /**
+     * Direction the car is facing
+     */
     private Direction facing;
 
+    /**
+     * X-position of the car
+     */
     private double x;
+    /**
+     * Y-position of the car
+     */
     private double y;
 
     /**
@@ -46,6 +67,8 @@ public abstract class Car implements Vehicle, Movable {
         this.modelName = modelName;
         stopEngine();
     }
+
+    public String getModelName() { return modelName;};
 
     public int getNrDoors(){
         return nrDoors;

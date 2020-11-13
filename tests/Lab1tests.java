@@ -24,6 +24,7 @@ import static org.junit.Assert.*;
  * Volvo240 should have 4 doors
  * Turning and moving eight times anti clockwise should make the car face the same direction it started with
  * Turning and moving eight times clockwise should make the car face the same direction it started with
+ * Model name for a new Saab95 should be Saab95
  */
 
 public class Lab1tests {
@@ -193,6 +194,12 @@ public class Lab1tests {
         }
 
         assertEquals(Car.Direction.NORTH, car.getFacing());
+    }
+
+    @Test
+    public void carName() {
+        Car car = new Saab95();
+        assertEquals("Saab95", car.getModelName());
     }
 
 
