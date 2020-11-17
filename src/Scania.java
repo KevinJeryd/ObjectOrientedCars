@@ -8,7 +8,6 @@ public class Scania extends Truck {
 
     /**
      * Constructs a Scania object
-     *
      */
     public Scania () {
         super(2, Color.yellow, 900, "Scania");
