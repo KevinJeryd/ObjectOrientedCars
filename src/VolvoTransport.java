@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.util.Stack;
+import java.math.*;
 
 public class VolvoTransport extends Truck{
     /**
@@ -24,10 +25,41 @@ public class VolvoTransport extends Truck{
     }
 
     public void loadCar (Car car) {
+        //Can't load more than max_cars
         if (carStack.size() > MAX_CARS) {
-            throw new IllegalArgumentException("Transport already full");
+            throw new IndexOutOfBoundsException("Transport already full");
         }
+
+        boolean isValidPosition = false;
+
+        //Checks so car and transport faces the same direction
+        if (car.getFacing() == getFacing()) {
+
+            //Checks so car is behind transport
+            if (getFacing() == Direction.NORTH) {
+                if (Math.abs(car.getX() - getX()) < 0.05){
+                    if (car.getY() >= getY()-1.05 && car.getY() < getY()){
+
+                    }
+                }
+            } else if (getFacing() == Direction.EAST) {
+
+            } else if (getFacing() == Direction.SOUTH) {
+
+            } else if (getFacing() == Direction.WEST) {
+
+            }
+        }
+
+        //loads the car if it's in a valid position
+        if (isValidPosition) {
+
+        }
+
+
     }
+
+
 
     public Stack<Car> getCarStack() {
         return carStack;
