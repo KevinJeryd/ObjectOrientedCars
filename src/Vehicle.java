@@ -50,8 +50,8 @@ public abstract class Vehicle implements Movable{
         this.enginePower = enginePower;
         this.modelName = modelName;
         stopEngine();
-    }
 
+    }
     public String getModelName() { return modelName;};
 
     public int getNrDoors(){

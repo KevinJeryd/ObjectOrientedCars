@@ -8,12 +8,9 @@ public class Scania extends Truck {
 
     /**
      * Constructs a Scania object
-     * @param nrDoors
-     * @param color
-     * @param enginePower
-     * @param modelName
+     *
      */
-    public Scania (int nrDoors, Color color, double enginePower, String modelName) {
+    public Scania () {
         super(2, Color.yellow, 900, "Scania");
         setPlatform(0);
     }
@@ -27,9 +24,9 @@ public class Scania extends Truck {
         if (getCurrentSpeed() > 0) {
             throw new IllegalArgumentException("You can't drive and change the platform!");
         } else {
-            if (getPlatform() < 0) {
+            if (platform < 0) {
                 this.platform = 0;
-            } else if (getPlatform() > 70) {
+            } else if (platform > 70) {
                 this.platform = 70;
             } else {
                 this.platform = platform;
@@ -41,6 +38,11 @@ public class Scania extends Truck {
         return platform;
     }
 
+    /**
+     * Moves the vehicle in the direction the vehicle is facing.
+     * Changes the x or y coordinates of the vehicle with the amount of current speed.
+     * (Only when the platform is at zero)
+     */
     @Override
     public void move(){
         if (getPlatform() == 0) {
