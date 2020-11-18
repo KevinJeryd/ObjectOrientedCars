@@ -19,11 +19,20 @@ public class VolvoTransport extends Truck{
      */
     private Stack<Car> carStack = new Stack<Car>();
 
+    /**
+     * Constructs a VolvoTransport
+     */
     public VolvoTransport(){
         super(2, Color.cyan, 900, "Volvo Transport");
         setRampUp(true);
     }
 
+    /**
+     * Loads the transport with the car
+     * Can't load more than 4 cars
+     * Can't load if car is too far away from the transport
+     * @param car
+     */
     public void loadCar (Car car) {
         lowerRamp(); //lowers the ramp
         //Can't load more than max_cars
@@ -40,6 +49,11 @@ public class VolvoTransport extends Truck{
             throw new IllegalArgumentException("The car is too far away from the transport");
         }
     }
+
+    /**
+     * Can't unload if the transport is empty
+     * @return car - returns the last loaded car
+     */
     public Car unloadCar() {
         lowerRamp(); //lowers the ramp
         if (carStack.size() == 0) {
@@ -50,6 +64,7 @@ public class VolvoTransport extends Truck{
             return car;
         }
     }
+
     public Stack<Car> getCarStack() {
         return carStack;
     }
@@ -81,6 +96,10 @@ public class VolvoTransport extends Truck{
     }
 
 
+    /**
+     * Moves the transport and the cars loaded onto the transport.
+     * Can't move when ramp is down.
+     */
     @Override
     public void move(){
         if (isRampUp()) {
