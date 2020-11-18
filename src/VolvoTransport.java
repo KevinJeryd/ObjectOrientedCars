@@ -27,30 +27,29 @@ public class VolvoTransport extends Truck{
     public void loadCar (Car car) {
         lowerRamp(); //lowers the ramp
         //Can't load more than max_cars
-        if (carStack.size() > MAX_CARS) {
+        if (carStack.size() >= MAX_CARS) {
             throw new IndexOutOfBoundsException("Transport already full");
         }
 
         //At least 1 step from the truck
         if (Math.abs(car.getX()-getX()) <= 1 && Math.abs(car.getY()-getY()) <= 1) {
             carStack.push(car);
+            car.setX(getX());
+            car.setY(getY());
         } else {
             throw new IllegalArgumentException("The car is too far away from the transport");
         }
     }
-
     public Car unloadCar() {
         lowerRamp(); //lowers the ramp
-
         if (carStack.size() == 0) {
             throw new IndexOutOfBoundsException("Transport already empty");
-        } else {
+         } else {
             Car car = carStack.pop();
             car.setX(car.getX()-1);
             return car;
         }
     }
-
     public Stack<Car> getCarStack() {
         return carStack;
     }
@@ -86,7 +85,7 @@ public class VolvoTransport extends Truck{
     public void move(){
         if (isRampUp()) {
             super.move();
-            for (int i = 0; i < carStack.size(); i++) {
+            for (int i = 0; i < carStack.size(); i++) { //moves the cars inside the transport too
                 carStack.get(i).setX(getX());
                 carStack.get(i).setY(getY());
             }
