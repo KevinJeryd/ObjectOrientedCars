@@ -86,6 +86,10 @@ public class VolvoTransport extends Truck{
     public void move(){
         if (isRampUp()) {
             super.move();
+            for (int i = 0; i < carStack.size(); i++) {
+                carStack.get(i).setX(getX());
+                carStack.get(i).setY(getY());
+            }
         } else {
             throw new IllegalArgumentException("Raise the ramp first!");
         }
