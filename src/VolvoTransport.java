@@ -25,41 +25,31 @@ public class VolvoTransport extends Truck{
     }
 
     public void loadCar (Car car) {
+        lowerRamp(); //lowers the ramp
         //Can't load more than max_cars
         if (carStack.size() > MAX_CARS) {
             throw new IndexOutOfBoundsException("Transport already full");
         }
 
-        boolean isValidPosition = false;
-
-        //Checks so car and transport faces the same direction
-        if (car.getFacing() == getFacing()) {
-
-            //Checks so car is behind transport
-            if (getFacing() == Direction.NORTH) {
-                if (Math.abs(car.getX() - getX()) < 0.05){
-                    if (car.getY() >= getY()-1.05 && car.getY() < getY()){
-
-                    }
-                }
-            } else if (getFacing() == Direction.EAST) {
-
-            } else if (getFacing() == Direction.SOUTH) {
-
-            } else if (getFacing() == Direction.WEST) {
-
-            }
+        //At least 1 step from the truck
+        if (Math.abs(car.getX()-getX()) <= 1 && Math.abs(car.getY()-getY()) <= 1) {
+            carStack.push(car);
+        } else {
+            throw new IllegalArgumentException("The car is too far away from the transport");
         }
-
-        //loads the car if it's in a valid position
-        if (isValidPosition) {
-
-        }
-
-
     }
 
+    public Car unloadCar() {
+        lowerRamp(); //lowers the ramp
 
+        if (carStack.size() == 0) {
+            throw new IndexOutOfBoundsException("Transport already empty");
+        } else {
+            Car car = carStack.pop();
+            car.setX(car.getX()-1);
+            return car;
+        }
+    }
 
     public Stack<Car> getCarStack() {
         return carStack;
