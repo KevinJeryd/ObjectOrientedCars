@@ -36,7 +36,7 @@ public class VehicleWorkshop<T extends Vehicle> {
      * @param vehicle - The vehicle that is supposed to be loaded into the workshop
      */
     public void load(T vehicle) {
-        if (getVehicles().size() <= maxCapacity) {
+        if (getVehicles().size() < maxCapacity) {
             getVehicles().add(vehicle);
         } else {
             throw new IndexOutOfBoundsException("The workshop is full.");
