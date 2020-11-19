@@ -1,2 +1,3 @@
-public class CarWorkshop {
+public class CarWorkshop extends VehicleWorkshop<Car> {
+
 }
