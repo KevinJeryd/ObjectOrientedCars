@@ -1,5 +1,12 @@
 import java.awt.*;
 
+/**
+ * Represents a vehicle.
+ * This is an abstract class used to be extended by classes representing different vehicles.
+ * @author Gabriel Wadensten
+ * @author Kevin Jeryd
+ * @author Jonatan Sandgren
+ */
 public abstract class Vehicle implements Movable{
 
     /**

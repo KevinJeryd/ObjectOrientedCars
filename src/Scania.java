@@ -1,5 +1,10 @@
 import java.awt.*;
-
+/**
+ * Represents a Scania Truck extending the class Truck.
+ * @author Gabriel Wadensten
+ * @author Kevin Jeryd
+ * @author Jonatan Sandgren
+ */
 public class Scania extends Truck {
     /**
      * The angle of the platform

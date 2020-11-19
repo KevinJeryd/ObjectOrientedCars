@@ -2,6 +2,12 @@ import java.awt.*;
 import java.util.Stack;
 import java.math.*;
 
+/**
+ * Represents a VolvoTransport extending the class Truck.
+ * @author Gabriel Wadensten
+ * @author Kevin Jeryd
+ * @author Jonatan Sandgren
+ */
 public class VolvoTransport extends Truck{
     /**
      * Is the platform up? (true or false)
