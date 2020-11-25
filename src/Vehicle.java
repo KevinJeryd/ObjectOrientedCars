@@ -56,6 +56,9 @@ public abstract class Vehicle implements Movable{
         this.color = color;
         this.enginePower = enginePower;
         this.modelName = modelName;
+        setFacing(Direction.EAST);
+        setX(0);
+        setY(0);
         stopEngine();
 
     }
