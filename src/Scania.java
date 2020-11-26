@@ -14,8 +14,8 @@ public class Scania extends Truck {
     /**
      * Constructs a Scania object
      */
-    public Scania () {
-        super(2, Color.yellow, 900, "Scania");
+    public Scania (Direction facing, double x, double y) {
+        super(2, Color.yellow, 900, "Scania", facing, x, y);
         setPlatform(0);
     }
 

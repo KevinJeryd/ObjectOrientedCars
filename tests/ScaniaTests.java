@@ -14,21 +14,21 @@ import static org.junit.Assert.*;
 public class ScaniaTests {
     @Test
     public void raiseMoreThan70() {
-        Scania truck = new Scania();
+        Scania truck = new Scania(Direction.EAST, 0, 0);
         truck.setPlatform(76);
         assertEquals(70, truck.getPlatform(), 0);
     }
 
     @Test
     public void lowerLessThanZero() {
-        Scania truck = new Scania();
+        Scania truck = new Scania(Direction.EAST, 0, 0);
         truck.setPlatform(-12);
         assertEquals(0, truck.getPlatform(), 0);
     }
 
     @Test
     public void cantMoveWhenFlatbedIsUp() {
-        Scania scania = new Scania();
+        Scania scania = new Scania(Direction.EAST, 0, 0);
         scania.setPlatform(50);
         scania.setCurrentSpeed(20);
         assertThrows(IllegalArgumentException.class, () -> {
@@ -38,7 +38,7 @@ public class ScaniaTests {
 
     @Test
     public void canMoveWhenFlatbedIsDown() {
-        Scania scania = new Scania();
+        Scania scania = new Scania(Direction.EAST, 0, 0);
         scania.setPlatform(0);
         scania.startEngine();
         scania.setFacing(Direction.EAST);
@@ -51,7 +51,7 @@ public class ScaniaTests {
 
     @Test
     public void cantChangePlatformWhileHavingSpeed() {
-        Scania truck = new Scania();
+        Scania truck = new Scania(Direction.EAST, 0, 0);
         truck.startEngine();
         assertThrows(IllegalArgumentException.class, () -> {
             truck.setPlatform(5);

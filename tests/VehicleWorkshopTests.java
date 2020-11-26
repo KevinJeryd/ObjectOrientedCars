@@ -14,8 +14,8 @@ public class VehicleWorkshopTests {
     @Test
     public void unloadAnyCar() {
         VehicleWorkshop<Car> carWorkshop = new VehicleWorkshop<>(5);
-        Car volvo = new Volvo240();
-        Car saab = new Saab95();
+        Car volvo = new Volvo240(Direction.EAST, 0, 0);
+        Car saab = new Saab95(Direction.EAST, 0, 0);
         carWorkshop.load(volvo);
         carWorkshop.load(saab);
         Car volvoAfter = carWorkshop.unload(volvo);
@@ -26,7 +26,7 @@ public class VehicleWorkshopTests {
     @Test
     public void unloadOnlyVolvo240() {
         VehicleWorkshop<Volvo240> carWorkshop = new VehicleWorkshop<>(2);
-        Volvo240 volvo = new Volvo240();
+        Volvo240 volvo = new Volvo240(Direction.EAST, 0, 0);
         carWorkshop.load(volvo);
         Volvo240 volvoAfter = carWorkshop.unload(volvo);
         assertEquals(volvoAfter, volvo);
@@ -36,7 +36,7 @@ public class VehicleWorkshopTests {
     @Test
     public void cantUnloadsIfEmpty() {
         VehicleWorkshop<Car> carWorkshop = new VehicleWorkshop<>(1);
-        Car volvo = new Volvo240();
+        Car volvo = new Volvo240(Direction.EAST, 0, 0);
         assertThrows(IndexOutOfBoundsException.class, () -> {
             carWorkshop.unload(volvo);
         });
@@ -45,9 +45,9 @@ public class VehicleWorkshopTests {
     @Test
     public void cantLoadOverMaxCapacity() {
         VehicleWorkshop<Vehicle> workshop = new VehicleWorkshop<>(2);
-        Vehicle volvoCar = new Volvo240();
-        Vehicle volvoTruck = new VolvoTransport();
-        Vehicle saab = new Saab95();
+        Vehicle volvoCar = new Volvo240(Direction.EAST, 0, 0);
+        Vehicle volvoTruck = new VolvoTransport(Direction.EAST, 0, 0);
+        Vehicle saab = new Saab95(Direction.EAST, 0, 0);
         workshop.load(volvoCar);
         workshop.load(volvoTruck);
         assertThrows(IndexOutOfBoundsException.class, () -> {

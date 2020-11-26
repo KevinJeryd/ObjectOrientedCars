@@ -51,14 +51,14 @@ public abstract class Vehicle implements Movable{
      * @param enginePower Engine power of the vehicle
      * @param modelName The vehicle model name
      */
-    public Vehicle(int nrDoors, Color color, double enginePower, String modelName) {
+    public Vehicle(int nrDoors, Color color, double enginePower, String modelName, Direction facing, double x, double y) {
         this.nrDoors = nrDoors;
         this.color = color;
         this.enginePower = enginePower;
         this.modelName = modelName;
-        setFacing(Direction.EAST);
-        setX(0);
-        setY(0);
+        setFacing(facing);
+        setX(x);
+        setY(y);
         stopEngine();
 
     }

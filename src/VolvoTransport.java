@@ -28,8 +28,8 @@ public class VolvoTransport extends Truck{
     /**
      * Constructs a VolvoTransport
      */
-    public VolvoTransport(){
-        super(2, Color.cyan, 900, "Volvo Transport");
+    public VolvoTransport(Direction facing, double x, double y){
+        super(2, Color.cyan, 900, "Volvo Transport", facing, x, y);
         setRampUp(true);
     }
 

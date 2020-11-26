@@ -20,7 +20,7 @@ import static org.junit.Assert.*;
 public class VolvoTransportTests {
     @Test
     public void lowersTheRamp() {
-        VolvoTransport transport = new VolvoTransport();
+        VolvoTransport transport = new VolvoTransport(Direction.EAST, 0, 0);
         transport.lowerRamp();
         assertEquals(false, transport.isRampUp());
 
@@ -28,7 +28,7 @@ public class VolvoTransportTests {
 
     @Test
     public void raisesTheRamp() {
-        VolvoTransport transport = new VolvoTransport();
+        VolvoTransport transport = new VolvoTransport(Direction.EAST, 0, 0);
         transport.lowerRamp();
         transport.raiseRamp();
         assertEquals(true, transport.isRampUp());
@@ -36,11 +36,11 @@ public class VolvoTransportTests {
 
     @Test
     public void moveMovesLoadedCars() {
-        VolvoTransport transport = new VolvoTransport();
+        VolvoTransport transport = new VolvoTransport(Direction.EAST, 0, 0);
         transport.setX(0);
         transport.setY(0);
 
-        Car car = new Volvo240();
+        Car car = new Volvo240(Direction.EAST, 0, 0);
         car.setX(0.5);
         car.setY(0.5);
 
@@ -58,11 +58,11 @@ public class VolvoTransportTests {
 
     @Test
     public void cantMoveWhenRampIsDown() {
-        VolvoTransport transport = new VolvoTransport();
+        VolvoTransport transport = new VolvoTransport(Direction.EAST, 0, 0);
         transport.setX(0);
         transport.setY(0);
 
-        Car car = new Volvo240();
+        Car car = new Volvo240(Direction.EAST, 0, 0);
         car.setX(0.5);
         car.setY(0.5);
 
@@ -77,10 +77,10 @@ public class VolvoTransportTests {
 
     @Test
     public void carNotNearby() {
-        VolvoTransport transport = new VolvoTransport();
+        VolvoTransport transport = new VolvoTransport(Direction.EAST, 0, 0);
         transport.setX(0);
         transport.setY(0);
-        Car car = new Volvo240();
+        Car car = new Volvo240(Direction.EAST, 0, 0);
         car.setX(2);
         car.setY(0);
         assertThrows(IllegalArgumentException.class, () -> {
@@ -90,11 +90,11 @@ public class VolvoTransportTests {
 
     @Test
     public void unloadCar() {
-        VolvoTransport transport = new VolvoTransport();
+        VolvoTransport transport = new VolvoTransport(Direction.EAST, 0, 0);
         transport.setX(0);
         transport.setY(0);
 
-        Car car = new Volvo240();
+        Car car = new Volvo240(Direction.EAST, 0, 0);
         car.setX(0.5);
         car.setY(0.5);
 
@@ -110,7 +110,7 @@ public class VolvoTransportTests {
 
     @Test
     public void cantUnloadWhenStackEmpty() {
-        VolvoTransport transport = new VolvoTransport();
+        VolvoTransport transport = new VolvoTransport(Direction.EAST, 0, 0);
         assertThrows(IndexOutOfBoundsException.class, () -> {
             transport.unloadCar();
         });
@@ -118,12 +118,12 @@ public class VolvoTransportTests {
 
     @Test
     public void cantLoadWhenStackFull() {
-        VolvoTransport transport = new VolvoTransport();
-        Car car1 = new Volvo240();
-        Car car2 = new Volvo240();
-        Car car3 = new Saab95();
-        Car car4 = new Saab95();
-        Car carBroke = new Volvo240();
+        VolvoTransport transport = new VolvoTransport(Direction.EAST, 0, 0);
+        Car car1 = new Volvo240(Direction.EAST, 0, 0);
+        Car car2 = new Volvo240(Direction.EAST, 0, 0);
+        Car car3 = new Saab95(Direction.EAST, 0, 0);
+        Car car4 = new Saab95(Direction.EAST, 0, 0);
+        Car carBroke = new Volvo240(Direction.EAST, 0, 0);
 
         transport.loadCar(car1);
         transport.loadCar(car2);
@@ -137,7 +137,7 @@ public class VolvoTransportTests {
 
     @Test
     public void cantLowerRampWhileDriving() {
-        VolvoTransport transport = new VolvoTransport();
+        VolvoTransport transport = new VolvoTransport(Direction.EAST, 0, 0);
         transport.startEngine();
         assertThrows(IllegalArgumentException.class, () -> {
             transport.lowerRamp();
@@ -146,11 +146,11 @@ public class VolvoTransportTests {
 
     @Test
     public void sameCarWhenUnloaded() {
-        VolvoTransport transport = new VolvoTransport();
-        Car car1 = new Volvo240();
-        Car car2 = new Volvo240();
-        Car car3 = new Saab95();
-        Car car4 = new Saab95();
+        VolvoTransport transport = new VolvoTransport(Direction.EAST, 0, 0);
+        Car car1 = new Volvo240(Direction.EAST, 0, 0);
+        Car car2 = new Volvo240(Direction.EAST, 0, 0);
+        Car car3 = new Saab95(Direction.EAST, 0, 0);
+        Car car4 = new Saab95(Direction.EAST, 0, 0);
 
 
         transport.loadCar(car1);

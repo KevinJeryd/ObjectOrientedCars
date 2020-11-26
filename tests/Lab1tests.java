@@ -31,21 +31,21 @@ public class Lab1tests {
 
     @Test
     public void stopMotorSpeedEqualZero() {
-        Car car = new Saab95();
+        Car car = new Saab95(Direction.EAST, 0, 0);
         car.stopEngine();
         assertEquals(0, car.getCurrentSpeed(), 0);
     }
 
     @Test
     public void startMotorSpeedGreaterThanZero() {
-        Car car = new Volvo240();
+        Car car = new Volvo240(Direction.EAST, 0, 0);
         car.startEngine();
         assertTrue(car.getCurrentSpeed() > 0);
     }
 
     @Test
     public void higherSpeedAfterIncrementSpeed() {
-        Car car = new Saab95();
+        Car car = new Saab95(Direction.EAST, 0, 0);
         double speedBeforeInc = car.getCurrentSpeed();
         car.incrementSpeed(3);
         double speedAfterInc = car.getCurrentSpeed();
@@ -54,7 +54,7 @@ public class Lab1tests {
 
     @Test
     public void lowerSpeedAfterDecrementSpeed() {
-        Car car = new Saab95();
+        Car car = new Saab95(Direction.EAST, 0, 0);
         car.startEngine();
         double speedBeforeDec = car.getCurrentSpeed();
         car.decrementSpeed(3);
@@ -64,18 +64,18 @@ public class Lab1tests {
 
     @Test
     public void moveMovesTheCarNorth() {
-        Car car = new Saab95();
+        Car car = new Saab95(Direction.EAST, 0, 0);
         car.startEngine();
         car.setFacing(Direction.NORTH);
         car.setX(0);
         car.setY(0);
         car.move();
-        assertTrue(car.getY() > 0);
+        assertTrue(car.getY() < 0);
     }
 
     @Test
     public void moveMovesTheCarEast() {
-        Car car = new Saab95();
+        Car car = new Saab95(Direction.EAST, 0, 0);
         car.startEngine();
         car.setFacing(Direction.EAST);
         car.setX(0);
@@ -86,7 +86,7 @@ public class Lab1tests {
 
     @Test
     public void turnLeftTurnsLeft () {
-        Car car = new Volvo240();
+        Car car = new Volvo240(Direction.EAST, 0, 0);
         car.setFacing(Direction.WEST);
         car.turnLeft();
         assertTrue( car.getFacing() == Direction.SOUTH );
@@ -94,7 +94,7 @@ public class Lab1tests {
 
     @Test
     public void turnRightTurnsRight () {
-        Car car = new Volvo240();
+        Car car = new Volvo240(Direction.EAST, 0, 0);
         car.setFacing(Direction.WEST);
         car.turnRight();
         assertTrue( car.getFacing() == Direction.NORTH );
@@ -102,14 +102,14 @@ public class Lab1tests {
 
     @Test
     public void gasWithHigherThanOne() {
-        Car car = new Saab95();
+        Car car = new Saab95(Direction.EAST, 0, 0);
         assertThrows(IllegalArgumentException.class, () -> {
             car.gas(32);
         });
     }
     @Test
     public void gasWithOkayAmount() {
-        Car car = new Saab95();
+        Car car = new Saab95(Direction.EAST, 0, 0);
         car.gas(0.4);
         assertTrue(car.getCurrentSpeed() > 0);
 
@@ -117,7 +117,7 @@ public class Lab1tests {
 
     @Test
     public void brakeWithLowerThanZero() {
-        Car car = new Saab95();
+        Car car = new Saab95(Direction.EAST, 0, 0);
         assertThrows(IllegalArgumentException.class, () -> {
             car.brake(-3);
         });
@@ -125,7 +125,7 @@ public class Lab1tests {
 
     @Test
     public void brakeWithOkayAmount() {
-        Car car = new Saab95();
+        Car car = new Saab95(Direction.EAST, 0, 0);
         car.startEngine();
         car.brake(0.8);
         assertTrue(car.getCurrentSpeed() == 0);
@@ -133,7 +133,7 @@ public class Lab1tests {
 
     @Test
     public void volvoSpeedFactor() {
-        Car car = new Volvo240();
+        Car car = new Volvo240(Direction.EAST, 0, 0);
         double speedFactor = car.speedFactor();
         assertEquals(1.25, speedFactor, 0);
     }
@@ -141,34 +141,34 @@ public class Lab1tests {
 
     @Test
     public void TurboOnSetsTurboOn() {
-        Saab95 car = new Saab95();
+        Saab95 car = new Saab95(Direction.EAST, 0, 0);
         car.setTurboOn();
         assertTrue (car.isTurboOn());
     }
 
     @Test
     public void TurboOffSetsTurboOff() {
-       Saab95 car = new Saab95();
+       Saab95 car = new Saab95(Direction.EAST, 0, 0);
        car.setTurboOff();
        assertFalse(car.isTurboOn());
     }
 
     @Test
     public void changeColor() {
-        Car car = new Volvo240();
+        Car car = new Volvo240(Direction.EAST, 0, 0);
         car.setColor(Color.gray);
         assertEquals(Color.gray, car.getColor());
     }
 
     @Test
     public void checkNrDoors() {
-        Car car = new Volvo240();
+        Car car = new Volvo240(Direction.EAST, 0, 0);
         assertEquals(4, car.getNrDoors());
     }
 
     @Test
     public void carGoAroundAntiClockwise() {
-        Car car = new Saab95();
+        Car car = new Saab95(Direction.EAST, 0, 0);
         car.startEngine();
         car.setFacing(Direction.NORTH);
         car.setY(0);
@@ -183,7 +183,7 @@ public class Lab1tests {
 
     @Test
     public void carGoAroundClockwise() {
-        Car car = new Saab95();
+        Car car = new Saab95(Direction.EAST, 0, 0);
         car.startEngine();
         car.setFacing(Direction.NORTH);
         car.setY(0);
@@ -198,7 +198,7 @@ public class Lab1tests {
 
     @Test
     public void carName() {
-        Car car = new Saab95();
+        Car car = new Saab95(Direction.EAST, 0, 0);
         assertEquals("Saab95", car.getModelName());
     }
 

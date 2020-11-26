@@ -16,8 +16,8 @@ public class Saab95 extends Car {
     /**
      * Constructs a Saab95 object.
      */
-    public Saab95(){
-        super(2, Color.red, 125, "Saab95");
+    public Saab95(Direction facing, double x, double y){
+        super(2, Color.red, 125, "Saab95", facing, x, y);
 	    turboOn = false;
     }
 

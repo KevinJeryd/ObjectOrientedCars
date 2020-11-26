@@ -1,7 +1,6 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.DirectColorModel;
 import java.util.ArrayList;
 
 /*
@@ -22,7 +21,7 @@ public class CarController {
     // The frame that represents this instance View of the MVC pattern
     CarView frame;
     // A list of cars, modify if needed
-    ArrayList<Car> cars = new ArrayList<>();
+    ArrayList<Vehicle> vehicles = new ArrayList<>();
 
     //methods:
 
@@ -30,7 +29,9 @@ public class CarController {
         // Instance of this class
         CarController cc = new CarController();
 
-        cc.cars.add(new Volvo240());
+        cc.vehicles.add(new Volvo240(Direction.EAST, 0, 0));
+        cc.vehicles.add(new Saab95(Direction.EAST, 0, 100));
+        cc.vehicles.add(new Scania(Direction.EAST, 0, 200));
 
         // Start a new view and send a reference of self
         cc.frame = new CarView("CarSim 1.0", cc);
@@ -44,14 +45,13 @@ public class CarController {
     * */
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            for (Car car : cars) {
+            for (Vehicle vehicle : vehicles) {
 
-                //if car is touching the wall
-                ChangeDirectionOnCollision(car);
+                ChangeDirectionOnCollision(vehicle);
 
-                car.move();
-                int x = (int) Math.round(car.getX());
-                int y = (int) Math.round(car.getY());
+                vehicle.move();
+                int x = (int) Math.round(vehicle.getX());
+                int y = (int) Math.round(vehicle.getY());
                 frame.drawPanel.moveit(x, y);
                 // repaint() calls the paintComponent method of the panel
                 frame.drawPanel.repaint();
@@ -60,30 +60,30 @@ public class CarController {
     }
 
     //Checks if the car touches the wall, and changes direction
-    private void ChangeDirectionOnCollision(Car car) {
-        if (car.getX() < 0) {
-            car.setFacing(Direction.EAST);
-        } else if (car.getX() + frame.drawPanel.volvoImage.getWidth() > frame.drawPanel.getWidth()) {
-            car.setFacing(Direction.WEST);
-        } else if (car.getY() < 0) {
-            car.setFacing(Direction.SOUTH);
-        } else if (car.getY() + frame.drawPanel.volvoImage.getHeight() > frame.drawPanel.getHeight()) {
-            car.setFacing(Direction.NORTH);
+    private void ChangeDirectionOnCollision(Vehicle vehicle) {
+        if (vehicle.getX() < 0) {
+            vehicle.setFacing(Direction.EAST);
+        } else if (vehicle.getX() + frame.drawPanel.volvoImage.getWidth() > frame.drawPanel.getWidth()) {
+            vehicle.setFacing(Direction.WEST);
+        } else if (vehicle.getY() < 0) {
+            vehicle.setFacing(Direction.SOUTH);
+        } else if (vehicle.getY() + frame.drawPanel.volvoImage.getHeight() > frame.drawPanel.getHeight()) {
+            vehicle.setFacing(Direction.NORTH);
         }
     }
 
     // Calls the gas method for each car once
     void gas(int amount) {
         double gas = ((double) amount) / 100;
-        for (Car car : cars) {
-            car.gas(gas);
+        for (Vehicle vehicle : vehicles) {
+            vehicle.gas(gas);
         }
     }
 
     void brake(int amount) {
         double brake = ((double) amount) / 100;
-        for (Car car : cars) {
-            car.brake(brake);
+        for (Vehicle vehicle : vehicles) {
+            vehicle.brake(brake);
         }
     }
 }
