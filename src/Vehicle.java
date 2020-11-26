@@ -155,11 +155,11 @@ public abstract class Vehicle implements Movable{
      */
     public void move(){
         if (getFacing() == Direction.NORTH) {
-            setY(getY()+getCurrentSpeed());
+            setY(getY()-getCurrentSpeed());
         } else if (getFacing()== Direction.EAST) {
             setX(getX()+getCurrentSpeed());
         } else if (getFacing() == Direction.SOUTH) {
-            setY(getY()-getCurrentSpeed());
+            setY(getY()+getCurrentSpeed());
         } else if (getFacing() == Direction.WEST) {
             setX(getX()-getCurrentSpeed());
         }
