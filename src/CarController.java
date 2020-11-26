@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.DirectColorModel;
 import java.util.ArrayList;
 
 /*
@@ -44,6 +45,10 @@ public class CarController {
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             for (Car car : cars) {
+
+                //if car is touching the wall
+                ChangeDirectionOnCollision(car);
+
                 car.move();
                 int x = (int) Math.round(car.getX());
                 int y = (int) Math.round(car.getY());
@@ -51,6 +56,19 @@ public class CarController {
                 // repaint() calls the paintComponent method of the panel
                 frame.drawPanel.repaint();
             }
+        }
+    }
+
+    //Checks if the car touches the wall, and changes direction
+    private void ChangeDirectionOnCollision(Car car) {
+        if (car.getX() < 0) {
+            car.setFacing(Direction.EAST);
+        } else if (car.getX() + frame.drawPanel.volvoImage.getWidth() > frame.drawPanel.getWidth()) {
+            car.setFacing(Direction.WEST);
+        } else if (car.getY() < 0) {
+            car.setFacing(Direction.SOUTH);
+        } else if (car.getY() + frame.drawPanel.volvoImage.getHeight() > frame.drawPanel.getHeight()) {
+            car.setFacing(Direction.NORTH);
         }
     }
 
