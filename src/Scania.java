@@ -48,10 +48,10 @@ public class Scania extends Truck {
      * (Only when the platform is at zero)
      */
     @Override
-    public void move(){
+    public void setCurrentSpeed(double currentSpeed){
         if (getPlatform() == 0) {
-            super.move();
-        } else {
+            super.setCurrentSpeed(currentSpeed);
+        } else if (currentSpeed != 0) {
             throw new IllegalArgumentException("Lower the platform first!");
         }
     }

@@ -92,4 +92,63 @@ public class CarController {
             vehicle.brake(brake);
         }
     }
+
+    void startVehicles() {
+        for (Vehicle vehicle : vehicles) {
+            vehicle.startEngine();
+            System.out.println("Engine on");
+        }
+    }
+
+    void stopVehicles() {
+        for (Vehicle vehicle : vehicles) {
+            vehicle.stopEngine();
+            System.out.println("Engine off");
+        }
+    }
+
+    void setTurboOn() {
+        for (Vehicle vehicle: vehicles) {
+            if (isSaab(vehicle)) {
+                ((Saab95) vehicle).setTurboOn();
+                System.out.println("Turbo on");
+            }
+        }
+    }
+
+    void setTurboOff() {
+        for (Vehicle vehicle: vehicles) {
+            if (isSaab(vehicle)) {
+                ((Saab95) vehicle).setTurboOff();
+                System.out.println("Turbo off");
+            }
+        }
+    }
+
+    private boolean isSaab(Vehicle vehicle) {
+        return vehicle.getModelName().equals("Saab95");
+    }
+
+    void lowerBed() {
+        for (Vehicle vehicle: vehicles){
+            if (isScania(vehicle)){
+                ((Scania) vehicle).setPlatform(0);
+                System.out.println("Lower bed");
+            }
+        }
+    }
+
+    void liftBed() {
+        for (Vehicle vehicle: vehicles){
+            if (isScania(vehicle)){
+                ((Scania) vehicle).setPlatform(70);
+                System.out.println("Lifts bed");
+            }
+        }
+    }
+
+    private boolean isScania(Vehicle vehicle) {
+        return vehicle.getModelName().equals("Scania");
+    }
+
 }

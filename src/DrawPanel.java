@@ -11,11 +11,7 @@ import javax.swing.*;
 
 public class DrawPanel extends JPanel{
 
-    // Just a single image, TODO: Generalize
-    //BufferedImage volvoImage;
-
-    // To keep track of a singel cars position
-    //Point volvoPoint = new Point();
+    //Vehicles and points
 
     ArrayList<BufferedImage> vehicleImages = new ArrayList<>();
     ArrayList<Point> vehiclePoints = new ArrayList<>();
@@ -43,7 +39,7 @@ public class DrawPanel extends JPanel{
     }
 
 
-    // TODO: Make this genereal for all cars
+    // Generalized for all vehicle
     void moveit(int x, int y, int index){
         vehiclePoints.get(index).x = x;
         vehiclePoints.get(index).y = y;
@@ -57,23 +53,6 @@ public class DrawPanel extends JPanel{
         this.setPreferredSize(new Dimension(x, y));
         this.setBackground(Color.green);
 
-
-        // Print an error message in case file is not found with a try/catch block
-        /*try {
-            // You can remove the "pics" part if running outside of IntelliJ and
-            // everything is in the same main folder.
-            // volvoImage = ImageIO.read(new File("Volvo240.jpg"));
-
-            // Rememember to rightclick src New -> Package -> name: pics -> MOVE *.jpg to pics.
-            // if you are starting in IntelliJ.
-
-
-            volvoImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Volvo240.jpg"));
-
-        } catch (IOException ex)
-        {
-            ex.printStackTrace();
-        }*/
 
     }
 

@@ -30,9 +30,8 @@ public class ScaniaTests {
     public void cantMoveWhenFlatbedIsUp() {
         Scania scania = new Scania(Direction.EAST, 0, 0);
         scania.setPlatform(50);
-        scania.setCurrentSpeed(20);
         assertThrows(IllegalArgumentException.class, () -> {
-            scania.move();
+            scania.setCurrentSpeed(20);
         });
     }
 
