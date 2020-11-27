@@ -40,6 +40,8 @@ public class CarController {
         // Start a new view and send a reference of self
         cc.frame = new CarView("CarSim 1.0", cc);
 
+        // sets up the vehicles in drawPanel
+        cc.frame.drawPanel.setUpVehicles(cc.vehicles);
         // Start the timer
         cc.timer.start();
     }
@@ -49,14 +51,14 @@ public class CarController {
     * */
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            for (Vehicle vehicle : vehicles) {
+            for (int i = 0; i < vehicles.size(); i++) {
 
-                ChangeDirectionOnCollision(vehicle);
+                ChangeDirectionOnCollision(vehicles.get(i));
 
-                vehicle.move();
-                int x = (int) Math.round(vehicle.getX());
-                int y = (int) Math.round(vehicle.getY());
-                frame.drawPanel.moveit(x, y);
+                vehicles.get(i).move();
+                int x = (int) Math.round(vehicles.get(i).getX());
+                int y = (int) Math.round(vehicles.get(i).getY());
+                frame.drawPanel.moveit(x, y, i);
                 // repaint() calls the paintComponent method of the panel
                 frame.drawPanel.repaint();
             }
@@ -67,11 +69,11 @@ public class CarController {
     private void ChangeDirectionOnCollision(Vehicle vehicle) {
         if (vehicle.getX() < 0) {
             vehicle.setFacing(Direction.EAST);
-        } else if (vehicle.getX() + frame.drawPanel.volvoImage.getWidth() > frame.drawPanel.getWidth()) {
+        } else if (vehicle.getX() + frame.drawPanel.vehicleImages.get(vehicles.indexOf(vehicle)).getWidth() > frame.drawPanel.getWidth()) {
             vehicle.setFacing(Direction.WEST);
         } else if (vehicle.getY() < 0) {
             vehicle.setFacing(Direction.SOUTH);
-        } else if (vehicle.getY() + frame.drawPanel.volvoImage.getHeight() > frame.drawPanel.getHeight()) {
+        } else if (vehicle.getY() + frame.drawPanel.vehicleImages.get(vehicles.indexOf(vehicle)).getHeight() > frame.drawPanel.getHeight()) {
             vehicle.setFacing(Direction.NORTH);
         }
     }
