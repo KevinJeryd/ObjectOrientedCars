@@ -5,7 +5,7 @@ import java.awt.*;
  * @author Kevin Jeryd
  * @author Jonatan Sandgren
  */
-public class Scania extends Truck {
+public class Scania extends Truck implements IPlatform {
     /**
      * The angle of the platform
      */

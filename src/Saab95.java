@@ -6,7 +6,7 @@ import java.awt.*;
  * @author Kevin Jeryd
  * @author Jonatan Sandgren
  */
-public class Saab95 extends Car {
+public class Saab95 extends Car implements ITurbo{
 
     /**
      * boolean turboOn; - Is the turbo on?

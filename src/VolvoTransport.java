@@ -8,7 +8,7 @@ import java.math.*;
  * @author Kevin Jeryd
  * @author Jonatan Sandgren
  */
-public class VolvoTransport extends Truck{
+public class VolvoTransport extends Truck implements IRamp {
     /**
      * Is the platform up? (true or false)
      */
