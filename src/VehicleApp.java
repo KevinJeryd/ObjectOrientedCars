@@ -24,9 +24,9 @@ public class VehicleApp {
         //Add vehicles
         ArrayList<Vehicle> vehicleList = new ArrayList<>();
         vehicleList.add(vehicleFactory.saabCreator(Direction.EAST, 0, 0));
-        //vehicleList.add(vehicleFactory.volvoTransportCreator(Direction.EAST, 0, 100));
-        //vehicleList.add(vehicleFactory.scaniaCreator(Direction.EAST, 0, 200));
-        //vehicleList.add(vehicleFactory.volvoCreator(Direction.EAST, 0, 300));
+        vehicleList.add(vehicleFactory.volvoTransportCreator(Direction.EAST, 0, 100));
+        vehicleList.add(vehicleFactory.scaniaCreator(Direction.EAST, 0, 200));
+        vehicleList.add(vehicleFactory.volvoCreator(Direction.EAST, 0, 300));
 
         // Start a new model, view and controller
         controller = new VehicleController();
@@ -36,6 +36,8 @@ public class VehicleApp {
         VehicleModel model = new VehicleModel(view, vehicleList);
 
         controller.setModel(model);
+
+        view.drawPanel.setCurrentVehicle(vehicleList);
 
         model.startTimer();
 

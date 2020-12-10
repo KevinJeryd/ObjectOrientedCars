@@ -1,8 +1,9 @@
 import javax.swing.*;
+import java.awt.event.ActionEvent;
 
 public class VehicleController implements IController, ISpinner{
     private VehicleModel model;
-    public int gasAmount;
+    public int gasAmount = 0;
 
     public void setModel(VehicleModel model) {
         this.model = model;
@@ -18,44 +19,39 @@ public class VehicleController implements IController, ISpinner{
 
     @Override
     public void onButtonClick(JButton button) {
+        System.out.println(button.getName());
+        switch (button.getName()) {
+            case "gasButton":
+                model.gas(gasAmount);
+                break;
+            case "brakeButton":
+                model.brake(gasAmount);
+                break;
+            case "startButton":
+                model.startVehicles();
+                break;
+            case "stopButton":
+                model.stopVehicles();
+                break;
+            case "turboOnButton":
+                model.setTurboOn();
+                break;
+            case "turboOffButton":
+                model.setTurboOff();
+                break;
+            case "liftBedButton":
+                model.liftBed();
+                break;
+            case "lowerBedButton":
+                model.lowerBed();
+                break;
+        }
 
     }
 
     @Override
-    public void updateGasAmount(double gasAmount) {
-
-    }
-
-    public void onBrakeActivated() {
-        model.brake(gasAmount);
-    }
-
-    public void onStartActivated() {
-        model.startVehicles();
-    }
-
-    public void onStopActivated() {
-        model.stopVehicles();
-    }
-
-    public void onSetTurboOnActivated() {
-        model.setTurboOn();
-    }
-
-    public void onSetTurboOffActivated() {
-        model.setTurboOff();
-    }
-
-    public void onLowerBedActivated() {
-        model.lowerBed();
-    }
-
-    public void onLiftBedActivated() {
-        model.liftBed();
-    }
-
-    public void onSpinnerChange(int i) {
-        gasAmount = i;
+    public void onSpinnerChange(int gasAmount) {
+        this.gasAmount = gasAmount;
     }
 
 }

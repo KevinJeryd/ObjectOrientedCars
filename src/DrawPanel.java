@@ -12,11 +12,10 @@ import javax.swing.*;
 public class DrawPanel extends JPanel{
 
     //Vehicles and points
+    ArrayList<Vehicle> vehicleList;
 
-    Vehicle currentVehicle;
-
-    public void setCurrentVehicle(Vehicle currentVehicle) {
-        this.currentVehicle = currentVehicle;
+    public void setCurrentVehicle(ArrayList<Vehicle> vehicleList) {
+        this.vehicleList = vehicleList;
     }
 
     // Initializes the panel and reads the images
@@ -31,9 +30,11 @@ public class DrawPanel extends JPanel{
     // TODO: Change to suit your needs.
     @Override
     protected void paintComponent(Graphics g) {
-        System.out.println("I exist " + currentVehicle.getModelName());
+        //System.out.println("I exist " + currentVehicle.getModelName());
         super.paintComponent(g);
-        g.drawImage(currentVehicle.getImage(), (int) Math.round(currentVehicle.getX()), (int) Math.round(currentVehicle.getY()), null);
+        for (int i = 0; i < vehicleList.size(); i++) {
+            g.drawImage(vehicleList.get(i).getImage(), (int) Math.round(vehicleList.get(i).getX()), (int) Math.round(vehicleList.get(i).getY()), null);
+        }
          // see javadoc for more info on the parameters
     }
 }

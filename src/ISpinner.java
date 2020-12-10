@@ -1,3 +1,3 @@
 public interface ISpinner {
-    public void updateGasAmount(double gasAmount);
+    public void onSpinnerChange(int gasAmount);
 }

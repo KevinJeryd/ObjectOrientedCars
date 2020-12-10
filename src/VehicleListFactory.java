@@ -14,8 +14,4 @@ public class VehicleListFactory {
         return new ArrayList<IRamp>();
     }
 
-    public ArrayList<Vehicle> vehicleListCreator() {
-        return new ArrayList<Vehicle>();
-    }
-
 }

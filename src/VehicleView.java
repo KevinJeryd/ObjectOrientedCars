@@ -9,17 +9,16 @@ import java.util.ArrayList;
 public class VehicleView extends JFrame implements VehicleObserver {
 
     private IController controller;
-    private ISpinner controlSpinner;
+    private ISpinner spinnerControl;
 
     // constructor
     public VehicleView(String framename, VehicleController controller) {
         this.controller = controller;
-        this.controlSpinner = controller;
+        this.spinnerControl = controller;
         initComponents(framename);
     }
 
     public void actOnUpdate(Vehicle vehicle) {
-        drawPanel.setCurrentVehicle(vehicle);
         drawPanel.repaint();
     }
 
@@ -44,7 +43,6 @@ public class VehicleView extends JFrame implements VehicleObserver {
     JSpinner gasSpinner = new JSpinner();
     int gasAmount = 0;
     JLabel gasLabel = new JLabel("Amount of gas");
-
     JButton gasButton = new JButton("Gas");
     JButton brakeButton = new JButton("Brake");
     JButton turboOnButton = new JButton("Saab Turbo on");
@@ -58,6 +56,15 @@ public class VehicleView extends JFrame implements VehicleObserver {
 
     // Sets everything in place and fits everything
     private void initComponents(String title) {
+
+        gasButton.setName("gasButton");
+        brakeButton.setName("brakeButton");
+        turboOnButton.setName("turboOnButton");
+        turboOffButton.setName("turboOffButton");
+        liftBedButton.setName("liftBedButton");
+        lowerBedButton.setName("lowerBedButton");
+        startButton.setName("startButton");
+        stopButton.setName("stopButton");
 
         this.setTitle(title);
         this.setPreferredSize(new Dimension(X,Y));
@@ -75,7 +82,7 @@ public class VehicleView extends JFrame implements VehicleObserver {
         gasSpinner = new JSpinner(spinnerModel);
         gasSpinner.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent e) {
-                gasAmount = (int) ((JSpinner)e.getSource()).getValue();
+                spinnerControl.onSpinnerChange((int) ((JSpinner)e.getSource()).getValue());
             }
         });
 
