@@ -1,4 +1,7 @@
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 /**
  * Represents a vehicle.
@@ -44,6 +47,8 @@ public abstract class Vehicle implements Movable{
      */
     private double y;
 
+    private BufferedImage Image;
+
     /**
      * Constructs a car object.
      * @param nrDoors Number of doors on the vehicle
@@ -61,7 +66,17 @@ public abstract class Vehicle implements Movable{
         setY(y);
         stopEngine();
 
+        try {
+            Image = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/" + getModelName() + ".jpg"));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
+
+    public BufferedImage getImage() {
+        return Image;
+    }
+
     public String getModelName() { return modelName;};
 
     public int getNrDoors(){

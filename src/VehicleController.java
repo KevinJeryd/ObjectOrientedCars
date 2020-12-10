@@ -1,4 +1,6 @@
-public class VehicleController implements IController{
+import javax.swing.*;
+
+public class VehicleController implements IController, ISpinner{
     private VehicleModel model;
     public int gasAmount;
 
@@ -12,6 +14,16 @@ public class VehicleController implements IController{
 
     public void onGasActivated() {
         model.gas(gasAmount);
+    }
+
+    @Override
+    public void onButtonClick(JButton button) {
+
+    }
+
+    @Override
+    public void updateGasAmount(double gasAmount) {
+
     }
 
     public void onBrakeActivated() {

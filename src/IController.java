@@ -1,19 +1,10 @@
+//Gör bara en "onButtonClick" som skickar med vilken knapp istället för alla dessa. Gör även att man kan customisea vilka knappar olika kontrollers ska ha kontroll till om man t.ex. vill dela upp eller liknande
+
+import javax.swing.*;
+
 public interface IController {
-    public void onGasActivated();
 
-    public void onBrakeActivated();
+    public void onButtonClick(JButton button);
 
-    public void onStartActivated();
 
-    public void onStopActivated();
-
-    public void onSetTurboOnActivated();
-
-    public void onSetTurboOffActivated();
-
-    public void onLowerBedActivated();
-
-    public void onLiftBedActivated();
-
-    public void onSpinnerChange(int i);
 }

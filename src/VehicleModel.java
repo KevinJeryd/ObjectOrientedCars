@@ -1,6 +1,20 @@
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class VehicleModel {
+
+    // The delay (ms) corresponds to 20 updates a sec (hz)
+    private  final int delay = 50;
+
+    Timer timer = new Timer(delay, new VehicleModel.TimerListener());
+
+    private class TimerListener implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            updater();
+        }
+    }
 
     private VehicleObserver view;
     private ArrayList<Vehicle> vehicleList;
@@ -18,6 +32,11 @@ public class VehicleModel {
         turboList = populateTurboList(vehicleList);
         platformList = populatePlatformList(vehicleList);
         rampList = populateRampList(vehicleList);
+    }
+
+    public void startTimer() {
+        // Start the timer
+        timer.start();
     }
 
     private ArrayList<ITurbo> populateTurboList(ArrayList<Vehicle> vehicles) {
@@ -56,11 +75,10 @@ public class VehicleModel {
             ChangeDirectionOnCollision(vehicleList.get(i));
 
             vehicleList.get(i).move();
-            int x = (int) Math.round(vehicleList.get(i).getX());
-            int y = (int) Math.round(vehicleList.get(i).getY());
-            view.moveit(x, y, i);
-            // repaint() calls the paintComponent method of the panel
-            view.repaint();
+
+            //System.out.println("I exist" + vehicleList.get(i).getModelName());
+
+            view.actOnUpdate(vehicleList.get(i));
         }
     }
 
@@ -68,11 +86,11 @@ public class VehicleModel {
     private void ChangeDirectionOnCollision(Vehicle vehicle) {
         if (vehicle.getX() < 0) {
             vehicle.setFacing(Direction.EAST);
-        } else if (vehicle.getX() + view.vehicleImages.get(vehicleList.indexOf(vehicle)).getWidth() > frame.drawPanel.getWidth()) {
+        } else if (vehicle.getX() + vehicle.getImage().getWidth() > view.getPanelWidth()) {
             vehicle.setFacing(Direction.WEST);
         } else if (vehicle.getY() < 0) {
             vehicle.setFacing(Direction.SOUTH);
-        } else if (vehicle.getY() + view.vehicleImages.get(vehicleList.indexOf(vehicle)).getHeight() > frame.drawPanel.getHeight()) {
+        } else if (vehicle.getY() + vehicle.getImage().getHeight() > view.getPanelHeight()) {
             vehicle.setFacing(Direction.NORTH);
         }
     }

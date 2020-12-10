@@ -7,51 +7,42 @@ import java.util.ArrayList;
 public class VehicleApp {
     // member fields:
 
-    // The delay (ms) corresponds to 20 updates a sec (hz)
-    private final int delay = 50;
     // The timer is started with an listener (see below) that executes the statements
     // each step between delays.
 
 
     // The controller
-    VehicleController controller;
+    static VehicleController controller;
 
     // Factory
-    VehicleFactory vehicleFactory = new VehicleFactory();
+    static VehicleFactory vehicleFactory = new VehicleFactory();
 
     //methods:
 
-    public void main(String[] args) {
+    public static void main(String[] args) {
 
         //Add vehicles
         ArrayList<Vehicle> vehicleList = new ArrayList<>();
         vehicleList.add(vehicleFactory.saabCreator(Direction.EAST, 0, 0));
-        vehicleList.add(vehicleFactory.volvoTransportCreator(Direction.EAST, 0, 0));
-        vehicleList.add(vehicleFactory.scaniaCreator(Direction.EAST, 0, 0));
-        vehicleList.add(vehicleFactory.volvoCreator(Direction.EAST, 0, 0));
+        //vehicleList.add(vehicleFactory.volvoTransportCreator(Direction.EAST, 0, 100));
+        //vehicleList.add(vehicleFactory.scaniaCreator(Direction.EAST, 0, 200));
+        //vehicleList.add(vehicleFactory.volvoCreator(Direction.EAST, 0, 300));
 
         // Start a new model, view and controller
         controller = new VehicleController();
 
-        VehicleView view = new VehicleView(controller);
+        VehicleView view = new VehicleView("VehicleFrame", controller);
 
         VehicleModel model = new VehicleModel(view, vehicleList);
 
         controller.setModel(model);
 
-        Timer timer = new Timer(delay, new VehicleApp.TimerListener());
-
-        // Start the timer
-        timer.start();
+        model.startTimer();
 
     }
 
     /* Each step the TimerListener moves all the cars in the list and tells the
      * view to update its images. Change this method to your needs.
      * */
-    private class TimerListener implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-            controller.onUpdate();
-        }
-    }
+
 }
