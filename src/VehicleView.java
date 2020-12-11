@@ -6,59 +6,51 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class VehicleView extends JFrame implements VehicleObserver {
+public class VehicleView extends JPanel implements VehicleObserver {
 
-    Buttons buttons;
-    // constructor
-    public VehicleView(String framename, Buttons buttons) {
-        this.buttons = buttons;
-        initComponents(framename);
-    }
 
     public void actOnUpdate(Vehicle vehicle) {
-        drawPanel.repaint();
+        this.repaint();
     }
 
     private static final int X = 800;
     private static final int Y = 800;
 
-    DrawPanel drawPanel = new DrawPanel(X, Y-240);
-
-
+    // Initializes the panel and reads the images
+    public VehicleView() {
+        this.setDoubleBuffered(true);
+        this.setPreferredSize(new Dimension(X, Y-240));
+        this.setBackground(Color.green);
+    }
 
     @Override
     public int getPanelHeight() {
-        return drawPanel.getHeight();
+        return this.getHeight();
     }
 
+    @Override
     public int getPanelWidth() {
-        return drawPanel.getWidth();
+        return this.getWidth();
     }
 
-    // Sets everything in place and fits everything
-    private void initComponents(String title) {
 
-        this.setTitle(title);
-        this.setPreferredSize(new Dimension(X,Y));
-        this.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
+    //Vehicles and points
+    ArrayList<Vehicle> vehicleList;
 
-        this.add(drawPanel);
-        this.add(buttons.gasPanel);
-        this.add(buttons.controlPanel);
-        this.add(buttons.startButton);
-        this.add(buttons.stopButton);
-
-
-        // Make the frame pack all it's components by respecting the sizes if possible.
-        this.pack();
-
-        // Get the computer screen resolution
-        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        // Center the frame
-        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
-        // Make the frame visible
-        this.setVisible(true);
-        // Make sure the frame exits when "x" is pressed
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    public void setVehicleList(ArrayList<Vehicle> vehicleList) {
+        this.vehicleList = vehicleList;
     }
+
+    // This method is called each time the panel updates/refreshes/repaints itself
+    // TODO: Change to suit your needs.
+    @Override
+    protected void paintComponent(Graphics g) {
+        //System.out.println("I exist " + currentVehicle.getModelName());
+        super.paintComponent(g);
+        for (int i = 0; i < vehicleList.size(); i++) {
+            g.drawImage(vehicleList.get(i).getImage(), (int) Math.round(vehicleList.get(i).getX()), (int) Math.round(vehicleList.get(i).getY()), null);
+        }
+        // see javadoc for more info on the parameters
+    }
+
 }

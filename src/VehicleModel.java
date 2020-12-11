@@ -16,7 +16,8 @@ public class VehicleModel {
         }
     }
 
-    private VehicleObserver view;
+    private ArrayList<VehicleObserver> viewList;
+
     private ArrayList<Vehicle> vehicleList;
     VehicleListFactory vehicleListFactory = new VehicleListFactory();
 
@@ -24,8 +25,8 @@ public class VehicleModel {
     ArrayList<IPlatform> platformList;
     ArrayList<IRamp> rampList;
 
-    public VehicleModel (VehicleObserver view, ArrayList<Vehicle> vehicleList) {
-        this.view = view;
+    public VehicleModel (ArrayList<VehicleObserver> viewList, ArrayList<Vehicle> vehicleList) {
+        this.viewList = viewList;
         this.vehicleList = vehicleList;
 
         //Populate the different lists
@@ -78,20 +79,24 @@ public class VehicleModel {
 
             //System.out.println("I exist" + vehicleList.get(i).getModelName());
 
-            view.actOnUpdate(vehicleList.get(i));
+            for (VehicleObserver vehicleObserver : viewList) {
+                vehicleObserver.actOnUpdate(vehicleList.get(i));
+            }
         }
     }
 
     //Checks if the car touches the wall, and changes direction
     private void ChangeDirectionOnCollision(Vehicle vehicle) {
-        if (vehicle.getX() < 0) {
-            vehicle.setFacing(Direction.EAST);
-        } else if (vehicle.getX() + vehicle.getImage().getWidth() > view.getPanelWidth()) {
-            vehicle.setFacing(Direction.WEST);
-        } else if (vehicle.getY() < 0) {
-            vehicle.setFacing(Direction.SOUTH);
-        } else if (vehicle.getY() + vehicle.getImage().getHeight() > view.getPanelHeight()) {
-            vehicle.setFacing(Direction.NORTH);
+        for (VehicleObserver vehicleObserver : viewList) {
+            if (vehicle.getX() < 0) {
+                vehicle.setFacing(Direction.EAST);
+            } else if (vehicle.getX() + vehicle.getImage().getWidth() > vehicleObserver.getPanelWidth()) {
+                vehicle.setFacing(Direction.WEST);
+            } else if (vehicle.getY() < 0) {
+                vehicle.setFacing(Direction.SOUTH);
+            } else if (vehicle.getY() + vehicle.getImage().getHeight() > vehicleObserver.getPanelHeight()) {
+                vehicle.setFacing(Direction.NORTH);
+            }
         }
     }
 

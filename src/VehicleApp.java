@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Vector;
 
 public class VehicleApp {
     // member fields:
@@ -30,21 +31,27 @@ public class VehicleApp {
         vehicleList.add(vehicleFactory.volvoCreator(Direction.EAST, 0, 300));
 
         // Start a new model, view and controller
+        ArrayList<VehicleObserver> viewList = new ArrayList<>();
+
         controller = new VehicleController();
 
         Buttons buttons = new Buttons("ButtonsFrame", controller);
 
-        VehicleView view = new VehicleView("VehicleFrame", buttons);
+        VehicleView vehicleView = new VehicleView();
+        viewList.add(vehicleView);
 
-        VehicleModel model = new VehicleModel(view, vehicleList);
+        TextView textView = new TextView();
+        viewList.add(textView);
+
+        VehicleModel model = new VehicleModel(viewList, vehicleList);
 
         controller.setModel(model);
 
-        view.drawPanel.setVehicleList(vehicleList);
+        vehicleView.setVehicleList(vehicleList);
 
 
 
-
+        VehicleFrame frame = new VehicleFrame("VehicleFrame", buttons, vehicleView);
 
         model.startTimer();
 
