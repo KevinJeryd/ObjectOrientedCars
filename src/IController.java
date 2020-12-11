@@ -7,5 +7,4 @@ public interface IController {
 
     public void onButtonClick(JButton button);
 
-
 }

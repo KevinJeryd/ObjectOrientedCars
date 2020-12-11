@@ -1,5 +1,6 @@
 import javax.sound.midi.SysexMessage;
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -31,13 +32,19 @@ public class VehicleApp {
         // Start a new model, view and controller
         controller = new VehicleController();
 
-        VehicleView view = new VehicleView("VehicleFrame", controller);
+        Buttons buttons = new Buttons("ButtonsFrame", controller);
+
+        VehicleView view = new VehicleView("VehicleFrame", buttons);
 
         VehicleModel model = new VehicleModel(view, vehicleList);
 
         controller.setModel(model);
 
         view.drawPanel.setVehicleList(vehicleList);
+
+
+
+
 
         model.startTimer();
 
