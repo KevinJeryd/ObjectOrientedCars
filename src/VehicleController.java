@@ -19,7 +19,7 @@ public class VehicleController implements IController, ISpinner{
 
     @Override
     public void onButtonClick(JButton button) {
-        System.out.println(button.getName());
+        //System.out.println(button.getName());
         switch (button.getName()) {
             case "gasButton":
                 model.gas(gasAmount);
@@ -46,7 +46,6 @@ public class VehicleController implements IController, ISpinner{
                 model.lowerBed();
                 break;
         }
-
     }
 
     @Override

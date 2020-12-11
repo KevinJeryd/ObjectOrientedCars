@@ -37,7 +37,7 @@ public class VehicleApp {
 
         controller.setModel(model);
 
-        view.drawPanel.setCurrentVehicle(vehicleList);
+        view.drawPanel.setVehicleList(vehicleList);
 
         model.startTimer();
 

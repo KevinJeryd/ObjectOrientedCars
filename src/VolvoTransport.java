@@ -88,7 +88,8 @@ public class VolvoTransport extends Truck implements IRamp {
      */
     public void lowerRamp() {
         if (getCurrentSpeed() > 0) {
-            throw new IllegalArgumentException("You can't drive and lower the ramp!");
+            //throw new IllegalArgumentException("You can't drive and lower the ramp!");
+            System.out.println("Error: You can't drive and lower the ramp!");
         } else {
             setRampUp(false);
         }
@@ -115,7 +116,8 @@ public class VolvoTransport extends Truck implements IRamp {
                 carStack.get(i).setY(getY());
             }
         } else {
-            throw new IllegalArgumentException("Raise the ramp first!");
+            //throw new IllegalArgumentException("Raise the ramp first!");
+            System.out.println("Error: Raise the ramp first!");
         }
     }
 }

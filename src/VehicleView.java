@@ -8,8 +8,8 @@ import java.util.ArrayList;
 
 public class VehicleView extends JFrame implements VehicleObserver {
 
-    private IController controller;
-    private ISpinner spinnerControl;
+    private final IController controller;
+    private final ISpinner spinnerControl;
 
     // constructor
     public VehicleView(String framename, VehicleController controller) {
@@ -72,8 +72,6 @@ public class VehicleView extends JFrame implements VehicleObserver {
 
         this.add(drawPanel);
 
-
-
         SpinnerModel spinnerModel =
                 new SpinnerNumberModel(0, //initial value
                         0, //min
@@ -104,12 +102,10 @@ public class VehicleView extends JFrame implements VehicleObserver {
         this.add(controlPanel);
         controlPanel.setBackground(Color.CYAN);
 
-
         startButton.setBackground(Color.blue);
         startButton.setForeground(Color.green);
         startButton.setPreferredSize(new Dimension(X/5-15,200));
         this.add(startButton);
-
 
         stopButton.setBackground(Color.red);
         stopButton.setForeground(Color.black);

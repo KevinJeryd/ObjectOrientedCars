@@ -14,7 +14,7 @@ public class DrawPanel extends JPanel{
     //Vehicles and points
     ArrayList<Vehicle> vehicleList;
 
-    public void setCurrentVehicle(ArrayList<Vehicle> vehicleList) {
+    public void setVehicleList(ArrayList<Vehicle> vehicleList) {
         this.vehicleList = vehicleList;
     }
 

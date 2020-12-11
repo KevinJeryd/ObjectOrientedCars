@@ -26,7 +26,8 @@ public class Scania extends Truck implements IPlatform {
      */
     public void setPlatform(double platform) {
         if (getCurrentSpeed() > 0) {
-            throw new IllegalArgumentException("You can't drive and change the platform!");
+            //throw new IllegalArgumentException("You can't drive and change the platform!");
+            System.out.println("You can't drive and change the platform!");
         } else {
             if (platform < 0) {
                 this.platform = 0;
@@ -52,7 +53,8 @@ public class Scania extends Truck implements IPlatform {
         if (getPlatform() == 0) {
             super.setCurrentSpeed(currentSpeed);
         } else if (currentSpeed != 0) {
-            throw new IllegalArgumentException("Lower the platform first!");
+            //throw new IllegalArgumentException("Lower the platform first!");
+            System.out.println("Error: Lower the platform first!");
         }
     }
 }

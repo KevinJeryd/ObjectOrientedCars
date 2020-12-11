@@ -112,43 +112,45 @@ public class VehicleModel {
 
     void startVehicles() {
         for (Vehicle vehicle : vehicleList) {
-            vehicle.startEngine();
-            System.out.println("Engine on");
+            if (vehicle.getCurrentSpeed() == 0) {
+                vehicle.startEngine();
+            }
+            //System.out.println("Engine on");
         }
     }
 
     void stopVehicles() {
         for (Vehicle vehicle : vehicleList) {
             vehicle.stopEngine();
-            System.out.println("Engine off");
+            //System.out.println("Engine off");
         }
     }
 
     void setTurboOn() {
         for (ITurbo vehicle: turboList) {
             vehicle.setTurboOn();
-            System.out.println("Turbo on");
+            //System.out.println("Turbo on");
         }
     }
 
     void setTurboOff() {
         for (ITurbo vehicle : turboList) {
             vehicle.setTurboOff();
-            System.out.println("Turbo off");
+            //System.out.println("Turbo off");
         }
     }
 
     void lowerBed() {
         for (IPlatform vehicle: platformList) {
             vehicle.setPlatform(0);
-            System.out.println("Lower bed");
+            //System.out.println("Lower bed");
         }
     }
 
     void liftBed() {
         for (IPlatform vehicle: platformList){
             vehicle.setPlatform(70);
-            System.out.println("Lifts bed");
+            //System.out.println("Lifts bed");
 
         }
     }
