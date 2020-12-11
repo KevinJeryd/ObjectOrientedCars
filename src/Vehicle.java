@@ -67,7 +67,7 @@ public abstract class Vehicle implements Movable{
         stopEngine();
 
         try {
-            Image = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/" + getModelName() + ".jpg"));
+            Image = ImageIO.read(VehicleView.class.getResourceAsStream("pics/" + getModelName() + ".jpg"));
         } catch (IOException ex) {
             ex.printStackTrace();
         }

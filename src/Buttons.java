@@ -5,13 +5,13 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Buttons extends JFrame {
-
-    private final IController controller;
-    private final ISpinner spinnerControl;
+public class Buttons{
 
     private static final int X = 800;
     private static final int Y = 800;
+
+    private final IController controller;
+    private final ISpinner spinnerControl;
 
     public Buttons(String framename, VehicleController controller) {
         this.controller = controller;
@@ -48,10 +48,6 @@ public class Buttons extends JFrame {
         startButton.setName("startButton");
         stopButton.setName("stopButton");
 
-        this.setTitle(title);
-        this.setPreferredSize(new Dimension(X,Y));
-        this.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
-
 
         SpinnerModel spinnerModel =
                 new SpinnerNumberModel(0, //initial value
@@ -69,7 +65,6 @@ public class Buttons extends JFrame {
         gasPanel.add(gasLabel, BorderLayout.PAGE_START);
         gasPanel.add(gasSpinner, BorderLayout.PAGE_END);
 
-        this.add(gasPanel);
 
         controlPanel.setLayout(new GridLayout(2,4));
 
@@ -80,18 +75,15 @@ public class Buttons extends JFrame {
         controlPanel.add(turboOffButton, 4);
         controlPanel.add(lowerBedButton, 5);
         controlPanel.setPreferredSize(new Dimension((X/2)+4, 200));
-        this.add(controlPanel);
         controlPanel.setBackground(Color.CYAN);
 
         startButton.setBackground(Color.blue);
         startButton.setForeground(Color.green);
         startButton.setPreferredSize(new Dimension(X/5-15,200));
-        this.add(startButton);
 
         stopButton.setBackground(Color.red);
         stopButton.setForeground(Color.black);
         stopButton.setPreferredSize(new Dimension(X/5-15,200));
-        this.add(stopButton);
 
         // This actionListener is for the gas button only
         gasButton.addActionListener(new ActionListener() {
