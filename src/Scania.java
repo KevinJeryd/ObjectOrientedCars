@@ -15,7 +15,7 @@ public class Scania extends Truck implements IPlatform {
      * Constructs a Scania object
      */
     public Scania (Direction facing, double x, double y) {
-        super(2, Color.yellow, 900, "Scania", facing, x, y);
+        super(2, Color.yellow, 900, "Scania", facing, x, y, 150, 90);
         setPlatform(0);
     }
 

@@ -15,21 +15,12 @@ public class TextView extends JLabel implements VehicleObserver {
     }
 
     @Override
-    public void actOnUpdate(Vehicle vehicle) {
+    public void actOnUpdate() {
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < vehicleList.size(); i++) {
-            sb.append("<html>" + vehicleList.get(i).getModelName() + " : " + (double) Math.round(100*vehicleList.get(i).getCurrentSpeed())/100 + "<br/> </hmtl>");
+        for (Vehicle vehicle : vehicleList) {
+            sb.append("<html>" + vehicle.getModelName() + " : " + (double) Math.round(100 * vehicle.getCurrentSpeed()) / 100 + "<br/> </hmtl>");
         }
         this.setText(sb.toString());
     }
 
-    @Override
-    public int getPanelHeight() {
-        return (int) Double.POSITIVE_INFINITY;
-    }
-
-    @Override
-    public int getPanelWidth() {
-        return (int) Double.POSITIVE_INFINITY;
-    }
 }

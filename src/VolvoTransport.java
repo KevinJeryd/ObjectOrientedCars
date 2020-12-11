@@ -29,7 +29,7 @@ public class VolvoTransport extends Truck implements IRamp {
      * Constructs a VolvoTransport
      */
     public VolvoTransport(Direction facing, double x, double y){
-        super(2, Color.cyan, 900, "VolvoTransport", facing, x, y);
+        super(2, Color.cyan, 900, "VolvoTransport", facing, x, y, 150, 90);
         setRampUp(true);
     }
 

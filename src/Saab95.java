@@ -17,7 +17,7 @@ public class Saab95 extends Car implements ITurbo{
      * Constructs a Saab95 object.
      */
     public Saab95(Direction facing, double x, double y){
-        super(2, Color.red, 125, "Saab95", facing, x, y);
+        super(2, Color.red, 125, "Saab95", facing, x, y, 100, 60);
 	    turboOn = false;
     }
 

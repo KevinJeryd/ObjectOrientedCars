@@ -47,7 +47,8 @@ public abstract class Vehicle implements Movable{
      */
     private double y;
 
-    private BufferedImage Image;
+    private int height;
+    private int width;
 
     /**
      * Constructs a car object.
@@ -56,25 +57,25 @@ public abstract class Vehicle implements Movable{
      * @param enginePower Engine power of the vehicle
      * @param modelName The vehicle model name
      */
-    public Vehicle(int nrDoors, Color color, double enginePower, String modelName, Direction facing, double x, double y) {
+    public Vehicle(int nrDoors, Color color, double enginePower, String modelName, Direction facing, double xPos, double yPos, int width, int height) {
         this.nrDoors = nrDoors;
         this.color = color;
         this.enginePower = enginePower;
         this.modelName = modelName;
         setFacing(facing);
-        setX(x);
-        setY(y);
+        setX(xPos);
+        setY(yPos);
         stopEngine();
-
-        try {
-            Image = ImageIO.read(VehicleView.class.getResourceAsStream("pics/" + getModelName() + ".jpg"));
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
+        this.height = height;
+        this.width = width;
     }
 
-    public BufferedImage getImage() {
-        return Image;
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
     }
 
     public String getModelName() { return modelName;};

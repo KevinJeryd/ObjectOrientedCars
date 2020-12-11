@@ -17,7 +17,7 @@ public class Volvo240 extends Car{
      * Constructs a Volvo240 object.
      */
     public Volvo240(Direction facing, double x, double y){
-        super(4, Color.black, 100, "Volvo240", facing, x, y);
+        super(4, Color.black, 100, "Volvo240", facing, x, y, 100, 60);
     }
 
     @Override

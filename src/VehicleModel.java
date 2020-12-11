@@ -5,6 +5,9 @@ import java.util.ArrayList;
 
 public class VehicleModel {
 
+    int worldWidth = 1000;
+    int worldHeight = 600;
+
     // The delay (ms) corresponds to 20 updates a sec (hz)
     private  final int delay = 50;
 
@@ -16,9 +19,9 @@ public class VehicleModel {
         }
     }
 
-    private ArrayList<VehicleObserver> viewList;
+    private final ArrayList<VehicleObserver> viewList;
+    private final ArrayList<Vehicle> vehicleList;
 
-    private ArrayList<Vehicle> vehicleList;
     VehicleListFactory vehicleListFactory = new VehicleListFactory();
 
     ArrayList<ITurbo> turboList;
@@ -71,17 +74,12 @@ public class VehicleModel {
     }
 
     public void updater() {
-        for (int i = 0; i < vehicleList.size(); i++) {
-
-            ChangeDirectionOnCollision(vehicleList.get(i));
-
-            vehicleList.get(i).move();
-
-            //System.out.println("I exist" + vehicleList.get(i).getModelName());
-
-            for (VehicleObserver vehicleObserver : viewList) {
-                vehicleObserver.actOnUpdate(vehicleList.get(i));
-            }
+        for (Vehicle vehicle : vehicleList) {
+            ChangeDirectionOnCollision(vehicle);
+            vehicle.move();
+        }
+        for (VehicleObserver vehicleObserver : viewList) {
+            vehicleObserver.actOnUpdate();
         }
     }
 
@@ -90,11 +88,11 @@ public class VehicleModel {
         for (VehicleObserver vehicleObserver : viewList) {
             if (vehicle.getX() < 0) {
                 vehicle.setFacing(Direction.EAST);
-            } else if (vehicle.getX() + vehicle.getImage().getWidth() > vehicleObserver.getPanelWidth()) {
+            } else if (vehicle.getX() + vehicle.getWidth() > worldWidth) {
                 vehicle.setFacing(Direction.WEST);
             } else if (vehicle.getY() < 0) {
                 vehicle.setFacing(Direction.SOUTH);
-            } else if (vehicle.getY() + vehicle.getImage().getHeight() > vehicleObserver.getPanelHeight()) {
+            } else if (vehicle.getY() + vehicle.getHeight() > worldHeight) {
                 vehicle.setFacing(Direction.NORTH);
             }
         }

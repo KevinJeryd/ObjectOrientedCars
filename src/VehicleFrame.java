@@ -17,7 +17,7 @@ public class VehicleFrame extends JFrame {
     }
 
     private static final int X = 1000;
-    private static final int Y = 800;
+    private static final int Y = 840;
 
     // Sets everything in place and fits everything
     private void initComponents(String title) {
