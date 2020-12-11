@@ -1,3 +1,5 @@
+import org.w3c.dom.Text;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -5,14 +7,16 @@ public class VehicleFrame extends JFrame {
 
     Buttons buttons;
     VehicleView vehicleView;
+    TextView textView;
     // constructor
-    public VehicleFrame(String framename, Buttons buttons, VehicleView vehicleView) {
+    public VehicleFrame(String framename, Buttons buttons, VehicleView vehicleView, TextView textView) {
         this.buttons = buttons;
         this.vehicleView = vehicleView;
+        this.textView = textView;
         initComponents(framename);
     }
 
-    private static final int X = 800;
+    private static final int X = 1000;
     private static final int Y = 800;
 
     // Sets everything in place and fits everything
@@ -22,11 +26,13 @@ public class VehicleFrame extends JFrame {
         this.setPreferredSize(new Dimension(X,Y));
         this.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
 
+        //add all components to the view
         this.add(vehicleView);
         this.add(buttons.gasPanel);
         this.add(buttons.controlPanel);
         this.add(buttons.startButton);
         this.add(buttons.stopButton);
+        this.add(textView);
 
 
         // Make the frame pack all it's components by respecting the sizes if possible.

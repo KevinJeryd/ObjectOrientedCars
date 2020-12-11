@@ -37,21 +37,20 @@ public class VehicleApp {
 
         Buttons buttons = new Buttons("ButtonsFrame", controller);
 
-        VehicleView vehicleView = new VehicleView();
+        VehicleView vehicleView = new VehicleView(vehicleList);
         viewList.add(vehicleView);
 
-        TextView textView = new TextView();
+        TextView textView = new TextView(vehicleList);
         viewList.add(textView);
 
         VehicleModel model = new VehicleModel(viewList, vehicleList);
 
         controller.setModel(model);
 
-        vehicleView.setVehicleList(vehicleList);
 
 
 
-        VehicleFrame frame = new VehicleFrame("VehicleFrame", buttons, vehicleView);
+        VehicleFrame frame = new VehicleFrame("VehicleFrame", buttons, vehicleView, textView);
 
         model.startTimer();
 

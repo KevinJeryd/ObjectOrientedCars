@@ -2,23 +2,34 @@ import org.junit.runner.OrderWith;
 
 import javax.sound.midi.SysexMessage;
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 
-public class TextView extends JFrame implements VehicleObserver {
+public class TextView extends JLabel implements VehicleObserver {
+
+    private final ArrayList<Vehicle> vehicleList;
+
+    TextView(ArrayList<Vehicle> vehicleList) {
+        this.setPreferredSize(new Dimension(200,100));
+        this.vehicleList = vehicleList;
+    }
 
     @Override
     public void actOnUpdate(Vehicle vehicle) {
-        System.out.print(vehicle.getModelName() + " : ");
-        System.out.println(vehicle.getCurrentSpeed());
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < vehicleList.size(); i++) {
+            sb.append("<html>" + vehicleList.get(i).getModelName() + " : " + (double) Math.round(100*vehicleList.get(i).getCurrentSpeed())/100 + "<br/> </hmtl>");
+        }
+        this.setText(sb.toString());
     }
 
     @Override
     public int getPanelHeight() {
-        return 900;
+        return (int) Double.POSITIVE_INFINITY;
     }
 
     @Override
     public int getPanelWidth() {
-        return 900;
+        return (int) Double.POSITIVE_INFINITY;
     }
 }
